@@ -41,10 +41,15 @@ export function matchClubs(clubs, profile) {
         score += Math.max(0, 20 - Math.floor(overage / 100) * 4)
       }
 
-      // Bonus: draw bias helps slicers
+      // Bonus: draw bias helps slicers (10 points)
       if (profile.miss === 'slice' && club.draw_bias) {
         score += 10
       }
+
+      // Note: community_rating is intentionally excluded from matching logic.
+      // It is used for display only on the results card.
+      // Reason: ratings cluster tightly (4.2-4.9) and newer clubs have fewer
+      // reviews — using it as a tiebreaker would unfairly penalise recent releases.
 
       return { ...club, match_score: score }
     })
@@ -61,4 +66,17 @@ export function getMatchLabel(score) {
 
 export function getMatchPercent(score) {
   return Math.min(100, Math.round((score / 110) * 100))
+}
+
+export function getCommunityLabel(rating) {
+  if (rating >= 4.7) return 'Highly rated'
+  if (rating >= 4.4) return 'Well rated'
+  if (rating >= 4.0) return 'Positively reviewed'
+  return 'Mixed reviews'
+}
+
+export function getCommunityContext(count) {
+  if (count >= 300) return 'Large sample'
+  if (count >= 100) return 'Good sample'
+  return 'Early reviews'
 }
