@@ -4,6 +4,62 @@ import ResultsCard from "./components/ResultsCard"
 import { matchClubs } from "./lib/matcher"
 import clubs from "./data/irons.json"
 
+const CATEGORY_ORDER = [
+  { key: 'max_forgiveness', label: 'Max forgiveness' },
+  { key: 'game_improvement', label: 'Game improvement' },
+  { key: 'players_distance', label: 'Players distance' },
+  { key: 'players', label: 'Players' },
+  { key: 'muscle_back', label: 'Muscle back' },
+]
+
+function BrowseList() {
+  return (
+    <div className="max-w-2xl mx-auto px-4 pb-12">
+      {CATEGORY_ORDER.map(cat => {
+        const catClubs = clubs.filter(c => c.category === cat.key)
+        if (catClubs.length === 0) return null
+        return (
+          <div key={cat.key} className="mb-8">
+            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+              {cat.label}
+            </h3>
+            <div className="flex flex-col gap-2">
+              {catClubs.map(club => (
+                <div
+                  key={club.id}
+                  className="bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between"
+                >
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">{club.name}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">
+                      {club.brand} · {club.shaft_options.join(' or ')} shaft
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      ${club.price_usd.toLocaleString()}
+                    </p>
+                    <div className="flex gap-1 mt-1 justify-end">
+                      {club.tags.slice(0, 2).map(tag => (
+                        <span
+                          key={tag}
+                          className="text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-400"
+                        >
+                          {tag.replace(/-/g, ' ')}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 function Header() {
   return (
     <header className="border-b border-gray-100 bg-white sticky top-0 z-10">
@@ -18,16 +74,22 @@ function Header() {
   )
 }
 
-function Hero() {
+function Hero({ onBrowse }) {
   return (
     <div className="max-w-2xl mx-auto px-4 pt-10 pb-6 text-center">
       <h1 className="text-2xl font-medium text-gray-900 mb-2">
         Find the right irons for your game
       </h1>
-      <p className="text-sm text-gray-500 max-w-md mx-auto">
+      <p className="text-sm text-gray-500 max-w-md mx-auto mb-8">
         Answer a few quick questions and we'll match you to the best irons for
         your handicap, miss pattern, and budget — no generic top-10 lists.
       </p>
+      <button
+        onClick={onBrowse}
+        className="text-sm text-gray-400 hover:text-gray-600 underline underline-offset-2 transition-all"
+      >
+        Or browse all irons →
+      </button>
     </div>
   )
 }
@@ -98,7 +160,7 @@ function Footer() {
 }
 
 export default function App() {
-  const [phase, setPhase] = useState('intro') // intro | results
+  const [phase, setPhase] = useState('intro') // intro | results | browse
   const [results, setResults] = useState([])
   const [profile, setProfile] = useState(null)
 
@@ -117,13 +179,18 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  function handleBrowse() {
+    setPhase('browse')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
 
       {phase === 'intro' && (
         <>
-          <Hero />
+          <Hero onBrowse={handleBrowse} />
           <div className="max-w-2xl mx-auto px-4">
             <IntakeForm onComplete={handleFormComplete} />
           </div>
@@ -147,6 +214,21 @@ export default function App() {
               ))
             )}
           </div>
+        </>
+      )}
+
+      {phase === 'browse' && (
+        <>
+          <div className="max-w-2xl mx-auto px-4 pt-8 pb-4 flex items-center justify-between">
+            <h2 className="text-lg font-medium text-gray-900">All irons</h2>
+            <button
+              onClick={handleReset}
+              className="text-xs text-gray-400 hover:text-gray-600 transition-all"
+            >
+              ← Back to finder
+            </button>
+          </div>
+          <BrowseList />
         </>
       )}
 
