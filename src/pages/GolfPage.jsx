@@ -4,11 +4,15 @@ import { useState } from "react"
 import { matchClubs, getMatchLabel, getMatchPercent } from "../lib/matcher"
 import { matchDrivers, getDriverMatchLabel, getDriverMatchPercent } from "../lib/driverMatcher"
 import { matchWedges, getWedgeMatchLabel, getWedgeMatchPercent } from "../lib/wedgeMatcher"
+import { matchPutters, getPutterMatchLabel, getPutterMatchPercent } from "../lib/putterMatcher"
+import { matchSets, getSetsMatchLabel, getSetsMatchPercent } from "../lib/setsMatcher"
 
 // Data
 import ironsData from "../data/irons.json"
 import driversData from "../data/drivers.json"
 import wedgesData from "../data/wedges.json"
+import puttersData from "../data/putters.json"
+import setsData from "../data/sets.json"
 
 const BRAND_GREEN = '#2D6A4F'
 const BRAND_GREEN_LIGHT = '#E1F5EE'
@@ -18,15 +22,15 @@ const BRAND_GREEN_LIGHT = '#E1F5EE'
 // ─────────────────────────────────────────────
 
 const CLUB_TYPES = [
-  { id: 'irons',   label: 'Irons',   emoji: '🏌️', live: true,  desc: 'Find irons matched to your handicap and swing' },
-  { id: 'drivers', label: 'Drivers', emoji: '🎯', live: true,  desc: 'Match a driver to your swing speed and miss' },
-  { id: 'wedges',  label: 'Wedges',  emoji: '🥏', live: true,  desc: 'Find wedges for your short game and conditions' },
-  { id: 'putters', label: 'Putters', emoji: '🎱', live: false, desc: 'Coming soon' },
-  { id: 'sets',    label: 'Full sets', emoji: '🏅', live: false, desc: 'Coming soon' },
+  { id: 'irons',   label: 'Irons',        emoji: '🏌️', live: true,  desc: 'Find irons matched to your handicap and swing' },
+  { id: 'drivers', label: 'Drivers',      emoji: '🎯', live: true,  desc: 'Match a driver to your swing speed and miss' },
+  { id: 'wedges',  label: 'Wedges',       emoji: '🥏', live: true,  desc: 'Find wedges for your short game and conditions' },
+  { id: 'putters', label: 'Putters',      emoji: '🎱', live: true,  desc: 'Match a putter to your stroke type and style' },
+  { id: 'sets',    label: 'Full sets',    emoji: '🏅', live: true,  desc: 'Find a complete set matched to your level and budget' },
 ]
 
 // ─────────────────────────────────────────────
-// Irons intake options
+// Intake options — Irons
 // ─────────────────────────────────────────────
 
 const IRON_CATEGORIES = [
@@ -55,7 +59,7 @@ const IRON_BUDGETS = [
 ]
 
 // ─────────────────────────────────────────────
-// Driver intake options
+// Intake options — Drivers
 // ─────────────────────────────────────────────
 
 const DRIVER_DISTANCES = [
@@ -85,7 +89,7 @@ const DRIVER_BUDGETS = [
 ]
 
 // ─────────────────────────────────────────────
-// Wedge intake options
+// Intake options — Wedges
 // ─────────────────────────────────────────────
 
 const WEDGE_WEAKNESSES = [
@@ -117,6 +121,71 @@ const WEDGE_SKILLS = [
 const WEDGE_BUDGETS = [
   { id: 130, label: 'Under $130' }, { id: 170, label: '$130–$170' },
   { id: 9999, label: '$170+' }, { id: 9999, label: 'No limit' },
+]
+
+// ─────────────────────────────────────────────
+// Intake options — Putters
+// ─────────────────────────────────────────────
+
+const PUTTER_STROKES = [
+  { id: 'straight',   label: 'Straight back, straight through', sub: 'Face stays square throughout the stroke' },
+  { id: 'slight_arc', label: 'Slight arc',                      sub: 'Small amount of face rotation — most common' },
+  { id: 'strong_arc', label: 'Strong arc',                      sub: 'Significant face rotation, gate-style stroke' },
+  { id: 'not_sure',   label: 'Not sure',                        sub: "I haven't analysed my stroke" },
+]
+
+const PUTTER_HEAD_STYLES = [
+  { id: 'blade',         label: 'Blade',        sub: 'Traditional thin look, feedback-focused' },
+  { id: 'mid_mallet',    label: 'Mid mallet',   sub: 'Between blade and full mallet' },
+  { id: 'mallet',        label: 'Mallet',       sub: 'Larger head, more alignment help' },
+  { id: 'no_preference', label: 'No preference', sub: 'Show me the best option for my stroke' },
+]
+
+const PUTTER_ALIGNMENTS = [
+  { id: 'minimal',       label: 'Minimal',       sub: 'Clean look, single sightline or none' },
+  { id: 'moderate',      label: 'Moderate',      sub: 'One or two clear alignment aids' },
+  { id: 'heavy',         label: 'Heavy',         sub: 'Maximum alignment help — lines, dots, shapes' },
+  { id: 'no_preference', label: 'No preference', sub: "I don't have strong feelings either way" },
+]
+
+const PUTTER_ZERO_TORQUE = [
+  { id: true,  label: 'Yes — zero torque',         sub: 'Centre-shafted, stays square automatically' },
+  { id: false, label: 'No — conventional',         sub: 'Traditional hosel, natural face rotation' },
+  { id: null,  label: "Not sure / no preference",  sub: "I don't know what zero torque is" },
+]
+
+const PUTTER_BUDGETS = [
+  { id: 200, label: 'Under $200' }, { id: 350, label: '$200–$350' },
+  { id: 500, label: '$350–$500' }, { id: 9999, label: 'No limit' },
+]
+
+// ─────────────────────────────────────────────
+// Intake options — Sets
+// ─────────────────────────────────────────────
+
+const SETS_SKILLS = [
+  { id: 'beginner', label: 'Complete beginner', sub: "I'm new to golf or have played fewer than 10 rounds" },
+  { id: 'high',     label: 'High handicap',     sub: '20+ handicap, established player looking for a full set' },
+  { id: 'mid',      label: 'Mid handicap',      sub: '8–20 handicap, want matched premium clubs' },
+]
+
+const SETS_SHAFTS = [
+  { id: 'graphite',  label: 'Graphite',  sub: 'Lighter, recommended for most golfers' },
+  { id: 'steel',     label: 'Steel',     sub: 'Heavier, more consistent — stronger swingers' },
+  { id: 'not_sure',  label: 'Not sure',  sub: 'Show me the best option for my level' },
+]
+
+const SETS_PRIORITIES = [
+  { id: 'value',       label: 'Best value for money', sub: 'I want the most for my budget' },
+  { id: 'performance', label: 'Best performance',     sub: 'I want the most forgiving and longest set available' },
+  { id: 'brand',       label: 'Trusted brand name',   sub: 'I want clubs from a brand I recognise' },
+]
+
+const SETS_BUDGETS = [
+  { id: 500,  label: 'Under $500' },
+  { id: 1500, label: '$500–$1,500' },
+  { id: 2000, label: '$1,500–$2,000' },
+  { id: 9999, label: '$2,000+' },
 ]
 
 // ─────────────────────────────────────────────
@@ -172,8 +241,7 @@ function NavButtons({ onBack, onNext, canContinue, isLast }) {
   return (
     <div className="flex gap-3 mt-5">
       {onBack && (
-        <button onClick={onBack}
-          className="px-4 py-2 text-sm text-gray-500 hover:text-gray-700">
+        <button onClick={onBack} className="px-4 py-2 text-sm text-gray-500 hover:text-gray-700">
           ← Back
         </button>
       )}
@@ -190,7 +258,7 @@ function NavButtons({ onBack, onNext, canContinue, isLast }) {
 }
 
 // ─────────────────────────────────────────────
-// Match bar (used by all result cards)
+// Match bar
 // ─────────────────────────────────────────────
 
 function MatchBar({ score, maxScore, getLabelFn, getPercentFn }) {
@@ -231,33 +299,44 @@ function StatBar({ label, value }) {
 }
 
 // ─────────────────────────────────────────────
-// Result cards
+// Result card — handles all club types
 // ─────────────────────────────────────────────
 
 function ResultCard({ club, rank, clubType }) {
   const getLabelFn = clubType === 'drivers' ? getDriverMatchLabel
-    : clubType === 'wedges' ? getWedgeMatchLabel
+    : clubType === 'wedges'  ? getWedgeMatchLabel
+    : clubType === 'putters' ? getPutterMatchLabel
+    : clubType === 'sets'    ? getSetsMatchLabel
     : getMatchLabel
+
   const getPercentFn = clubType === 'drivers' ? getDriverMatchPercent
-    : clubType === 'wedges' ? getWedgeMatchPercent
+    : clubType === 'wedges'  ? getWedgeMatchPercent
+    : clubType === 'putters' ? getPutterMatchPercent
+    : clubType === 'sets'    ? getSetsMatchPercent
     : getMatchPercent
 
   const isTopPick = rank === 0
   const rankLabel = rank === 0 ? 'Top pick' : rank === 1 ? 'Runner up' : rank === 2 ? 'Also consider' : null
 
-  // Stats differ by club type
-  const stats = clubType === 'wedges'
-    ? [['Spin', club.spin_rating], ['Forgiveness', club.forgiveness], ['Feel', club.feel_rating], ['Versatility', club.versatility]]
-    : [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Workability', club.workability], ['Feel', club.feel_rating]]
+  const subtitle = {
+    irons:   `${club.category_label} · ${club.shaft_options?.join(' or ')} shaft`,
+    drivers: `${club.category_label} · ${club.head_size_cc}cc · ${club.lofts_available?.join('°, ')}°`,
+    wedges:  `${club.category_label} · ${club.lofts_available?.join('°, ')}°`,
+    putters: `${club.category_label} · ${club.head_style?.replace(/_/g, ' ')}`,
+    sets:    `${club.category_label} · ${club.pieces} clubs · ${club.shaft} shafts`,
+  }[clubType] || club.category_label
 
-  // Subtitle differs by club type
-  const subtitle = clubType === 'irons'
-    ? `${club.category_label} · ${club.shaft_options?.join(' or ')} shaft`
-    : clubType === 'drivers'
-    ? `${club.category_label} · ${club.head_size_cc}cc · ${club.lofts_available?.join('°, ')}°`
-    : `${club.category_label} · ${club.lofts_available?.join('°, ')}°`
+  const priceLabel = {
+    irons: 'set price', drivers: 'per club', wedges: 'per wedge', putters: 'per putter', sets: 'complete set'
+  }[clubType] || 'price'
 
-  const priceLabel = clubType === 'irons' ? 'set price' : 'per club'
+  const stats = {
+    irons:   [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Workability', club.workability], ['Feel', club.feel_rating]],
+    drivers: [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Workability', club.workability], ['Feel', club.feel_rating]],
+    wedges:  [['Spin', club.spin_rating], ['Forgiveness', club.forgiveness], ['Feel', club.feel_rating], ['Versatility', club.versatility]],
+    putters: [['Forgiveness', club.forgiveness], ['Feel', club.feel_rating], ['Alignment', club.alignment_rating], ['Distance ctrl', club.distance_control]],
+    sets:    [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Value', club.value_rating]],
+  }[clubType] || []
 
   return (
     <div className="bg-white rounded-2xl p-5 mb-4"
@@ -283,22 +362,19 @@ function ResultCard({ club, rank, clubType }) {
         </div>
       </div>
 
-      <MatchBar
-        score={club.match_score}
-        maxScore={club.match_max}
-        getLabelFn={getLabelFn}
-        getPercentFn={getPercentFn}
-      />
+      <MatchBar score={club.match_score} maxScore={club.match_max} getLabelFn={getLabelFn} getPercentFn={getPercentFn} />
 
       <p className="text-sm text-gray-600 leading-relaxed mb-4">{club.community_verdict}</p>
 
-      <div className="flex flex-col gap-1.5 mb-4 py-3 border-t border-b border-gray-100">
-        {stats.map(([label, value]) => (
-          <StatBar key={label} label={label} value={value} />
-        ))}
-      </div>
+      {stats.length > 0 && (
+        <div className="flex flex-col gap-1.5 mb-4 py-3 border-t border-b border-gray-100">
+          {stats.map(([label, value]) => (
+            <StatBar key={label} label={label} value={value} />
+          ))}
+        </div>
+      )}
 
-      {/* Wedge-specific: grinds and bounce */}
+      {/* Type-specific extras */}
       {clubType === 'wedges' && (
         <div className="mb-4">
           {club.grinds_available && (
@@ -320,18 +396,41 @@ function ResultCard({ club, rank, clubType }) {
         </div>
       )}
 
-      {/* Driver-specific: draw bias badge */}
       {clubType === 'drivers' && club.draw_bias && (
-        <div className="mb-4">
+        <div className="mb-4 flex gap-2 flex-wrap">
           <span className="text-xs px-2 py-0.5 rounded-full"
             style={{ background: BRAND_GREEN_LIGHT, color: BRAND_GREEN }}>
             Draw bias
           </span>
           {club.adjustable && (
-            <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 ml-1.5">
-              Adjustable
-            </span>
+            <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">Adjustable</span>
           )}
+        </div>
+      )}
+
+      {clubType === 'putters' && (
+        <div className="mb-4 flex gap-2 flex-wrap">
+          {club.stroke_type?.map(s => (
+            <span key={s} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
+              {s.replace(/_/g, ' ')} stroke
+            </span>
+          ))}
+          {club.hosel_options?.slice(0, 2).map(h => (
+            <span key={h} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-400">
+              {h.replace(/_/g, ' ')}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {clubType === 'sets' && (
+        <div className="mb-4">
+          <span className="text-xs text-gray-400 mr-2">Includes:</span>
+          {club.includes?.map(item => (
+            <span key={item} className="inline-block text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-500 mr-1 mb-1">
+              {item.replace(/_/g, ' ')}
+            </span>
+          ))}
         </div>
       )}
 
@@ -383,43 +482,30 @@ function ResultCard({ club, rank, clubType }) {
 // Browse lists
 // ─────────────────────────────────────────────
 
-const IRON_CATEGORIES_ORDER = [
-  { key: 'max_forgiveness', label: 'Max forgiveness' },
-  { key: 'game_improvement', label: 'Game improvement' },
-  { key: 'players_distance', label: 'Players distance' },
-  { key: 'players', label: 'Players' },
-  { key: 'muscle_back', label: 'Muscle back' },
-]
+const CATEGORIES_BY_TYPE = {
+  irons:   [{ key: 'max_forgiveness', label: 'Max forgiveness' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'players_distance', label: 'Players distance' }, { key: 'players', label: 'Players' }, { key: 'muscle_back', label: 'Muscle back' }],
+  drivers: [{ key: 'max_forgiveness', label: 'Max forgiveness' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'players_distance', label: 'Players distance' }, { key: 'players', label: 'Players' }],
+  wedges:  [{ key: 'tour_performance', label: 'Tour performance' }, { key: 'versatile', label: 'Versatile' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'specialist', label: 'Specialist' }],
+  putters: [{ key: 'blade', label: 'Blade' }, { key: 'mid_mallet', label: 'Mid mallet' }, { key: 'mallet', label: 'Mallet' }, { key: 'zero_torque', label: 'Zero torque' }],
+  sets:    [{ key: 'beginner', label: 'Beginner' }, { key: 'high_handicap', label: 'High handicap' }, { key: 'mid_handicap', label: 'Mid handicap' }],
+}
 
-const DRIVER_CATEGORIES_ORDER = [
-  { key: 'max_forgiveness', label: 'Max forgiveness' },
-  { key: 'game_improvement', label: 'Game improvement' },
-  { key: 'players_distance', label: 'Players distance' },
-  { key: 'players', label: 'Players' },
-]
+const DATA_BY_TYPE = {
+  irons: ironsData, drivers: driversData, wedges: wedgesData, putters: puttersData, sets: setsData,
+}
 
-const WEDGE_CATEGORIES_ORDER = [
-  { key: 'tour_performance', label: 'Tour performance' },
-  { key: 'versatile', label: 'Versatile' },
-  { key: 'game_improvement', label: 'Game improvement' },
-  { key: 'specialist', label: 'Specialist' },
-]
+function browseSubtitle(item, clubType) {
+  if (clubType === 'irons')   return `${item.brand} · ${item.shaft_options?.join(' or ')} shaft`
+  if (clubType === 'drivers') return `${item.brand} · ${item.head_size_cc}cc${item.draw_bias ? ' · Draw bias' : ''}`
+  if (clubType === 'wedges')  return `${item.brand} · ${item.lofts_available?.length} lofts`
+  if (clubType === 'putters') return `${item.brand} · ${item.head_style?.replace(/_/g, ' ')}`
+  if (clubType === 'sets')    return `${item.brand} · ${item.pieces} clubs · ${item.shaft} shafts`
+  return item.brand
+}
 
 function BrowseList({ clubType }) {
-  const data = clubType === 'drivers' ? driversData
-    : clubType === 'wedges' ? wedgesData
-    : ironsData
-
-  const categories = clubType === 'drivers' ? DRIVER_CATEGORIES_ORDER
-    : clubType === 'wedges' ? WEDGE_CATEGORIES_ORDER
-    : IRON_CATEGORIES_ORDER
-
-  const subtitle = (item) => {
-    if (clubType === 'irons') return `${item.brand} · ${item.shaft_options?.join(' or ')} shaft`
-    if (clubType === 'drivers') return `${item.brand} · ${item.head_size_cc}cc${item.draw_bias ? ' · Draw bias' : ''}`
-    return `${item.brand} · ${item.lofts_available?.length} loft options`
-  }
-
+  const data = DATA_BY_TYPE[clubType] || []
+  const categories = CATEGORIES_BY_TYPE[clubType] || []
   return (
     <div className="pb-12">
       {categories.map(cat => {
@@ -427,15 +513,15 @@ function BrowseList({ clubType }) {
         if (items.length === 0) return null
         return (
           <div key={cat.key} className="mb-8">
-            <h3 className="text-xs font-semibold uppercase tracking-widest mb-3"
-              style={{ color: BRAND_GREEN }}>{cat.label}</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: BRAND_GREEN }}>
+              {cat.label}
+            </h3>
             <div className="flex flex-col gap-2">
               {items.map(item => (
-                <div key={item.id}
-                  className="bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between">
+                <div key={item.id} className="bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-900">{item.name}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{subtitle(item)}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">{browseSubtitle(item, clubType)}</p>
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-medium text-gray-900">${item.price_usd?.toLocaleString()}</p>
@@ -458,18 +544,15 @@ function BrowseList({ clubType }) {
 }
 
 // ─────────────────────────────────────────────
-// Step-based intake forms
+// Intake forms
 // ─────────────────────────────────────────────
 
 function IronsForm({ onComplete }) {
-  const [step, setStep] = useState(0) // 0=path, 1=category or handicap, 2=miss, 3=shaft, 4=budget
+  const [step, setStep] = useState(0)
   const [profile, setProfile] = useState({ path: null, category: null, handicap: null, miss: null, shaft: null, budget_max: null })
-
   function update(key, val) { setProfile(p => ({ ...p, [key]: val })) }
-
   const totalSteps = profile.path === 'category' ? 3 : 4
 
-  // Step 0 — path choice
   if (step === 0) return (
     <div>
       <ProgressBar steps={totalSteps} current={0} />
@@ -490,7 +573,6 @@ function IronsForm({ onComplete }) {
     </div>
   )
 
-  // Step 1 — category picker or handicap
   if (step === 1 && profile.path === 'category') return (
     <div>
       <ProgressBar steps={totalSteps} current={1} />
@@ -530,16 +612,13 @@ function IronsForm({ onComplete }) {
       <p className="text-sm text-gray-500 mb-4">The most important factor in matching irons to your game.</p>
       <div className="flex flex-wrap gap-2 mb-4">
         {IRON_HANDICAP_RANGES.map(r => (
-          <PillButton key={r.id} selected={profile.handicap === r.id} onClick={() => update('handicap', r.id)}>
-            {r.label}
-          </PillButton>
+          <PillButton key={r.id} selected={profile.handicap === r.id} onClick={() => update('handicap', r.id)}>{r.label}</PillButton>
         ))}
       </div>
       <NavButtons onBack={() => setStep(0)} onNext={() => setStep(2)} canContinue={!!profile.handicap} isLast={false} />
     </div>
   )
 
-  // Step 2 — miss
   if (step === 2) return (
     <div>
       <ProgressBar steps={totalSteps} current={2} />
@@ -552,7 +631,6 @@ function IronsForm({ onComplete }) {
     </div>
   )
 
-  // Step 3 — shaft (guided only) or budget (category path)
   if (step === 3 && profile.path === 'category') return (
     <div>
       <ProgressBar steps={totalSteps} current={3} />
@@ -560,9 +638,7 @@ function IronsForm({ onComplete }) {
       <p className="text-sm text-gray-500 mb-5">For a full 7-piece set.</p>
       <div className="flex flex-wrap gap-2">
         {IRON_BUDGETS.map(b => (
-          <PillButton key={b.id} selected={profile.budget_max === b.id} onClick={() => update('budget_max', b.id)}>
-            {b.label}
-          </PillButton>
+          <PillButton key={b.id} selected={profile.budget_max === b.id} onClick={() => update('budget_max', b.id)}>{b.label}</PillButton>
         ))}
       </div>
       <NavButtons onBack={() => setStep(2)} onNext={() => onComplete(profile)} canContinue={!!profile.budget_max} isLast={true} />
@@ -585,9 +661,7 @@ function IronsForm({ onComplete }) {
       <p className="text-sm font-medium text-gray-700 mb-2">Budget (7-piece set)</p>
       <div className="flex flex-wrap gap-2">
         {IRON_BUDGETS.map(b => (
-          <PillButton key={b.id} selected={profile.budget_max === b.id} onClick={() => update('budget_max', b.id)}>
-            {b.label}
-          </PillButton>
+          <PillButton key={b.id} selected={profile.budget_max === b.id} onClick={() => update('budget_max', b.id)}>{b.label}</PillButton>
         ))}
       </div>
       <NavButtons onBack={() => setStep(2)} onNext={() => onComplete(profile)} canContinue={!!profile.shaft && !!profile.budget_max} isLast={true} />
@@ -597,65 +671,81 @@ function IronsForm({ onComplete }) {
   return null
 }
 
-function DriversForm({ onComplete }) {
+function SimpleStepForm({ steps, onComplete }) {
   const [step, setStep] = useState(0)
-  const [profile, setProfile] = useState({ distance: null, miss: null, priority: null, budget_max: null })
+  const [profile, setProfile] = useState(() =>
+    Object.fromEntries(steps.map(s => [s.key, null]))
+  )
   function update(key, val) { setProfile(p => ({ ...p, [key]: val })) }
-  const steps = [
-    { key: 'distance', title: 'How far do you hit your driver?', sub: 'Helps match clubs to your swing speed.', options: DRIVER_DISTANCES },
-    { key: 'miss', title: "What's your typical miss off the tee?", sub: 'The most important question for finding the right driver.', options: DRIVER_MISSES },
-    { key: 'priority', title: 'What matters most to you?', sub: 'Helps balance forgiveness vs distance in your results.', options: DRIVER_PRIORITIES },
-    { key: 'budget_max', title: "What's your budget?", sub: 'We include previous-gen options at a discount where they fit.', options: DRIVER_BUDGETS },
-  ]
   const current = steps[step]
   return (
     <div>
       <ProgressBar steps={steps.length} current={step} />
       <h2 className="text-lg font-medium text-gray-900 mb-1">{current.title}</h2>
       <p className="text-sm text-gray-500 mb-5">{current.sub}</p>
-      {current.options.map(opt => (
-        <OptionCard key={opt.id} selected={profile[current.key] === opt.id}
-          onClick={() => update(current.key, opt.id)} label={opt.label} sub={opt.sub} />
+      {current.options.map((opt, i) => (
+        <OptionCard
+          key={i}
+          selected={profile[current.key] === opt.id}
+          onClick={() => update(current.key, opt.id)}
+          label={opt.label}
+          sub={opt.sub}
+        />
       ))}
       <NavButtons
         onBack={step > 0 ? () => setStep(s => s - 1) : null}
         onNext={() => step < steps.length - 1 ? setStep(s => s + 1) : onComplete(profile)}
-        canContinue={!!profile[current.key]}
+        canContinue={profile[current.key] !== null && profile[current.key] !== undefined}
         isLast={step === steps.length - 1}
       />
     </div>
   )
 }
 
-function WedgesForm({ onComplete }) {
-  const [step, setStep] = useState(0)
-  const [profile, setProfile] = useState({ weakness: null, swing_type: null, conditions: null, skill: null, budget_max: null })
-  function update(key, val) { setProfile(p => ({ ...p, [key]: val })) }
-  const steps = [
-    { key: 'weakness',   title: "What's your biggest short game weakness?", sub: 'Shapes every recommendation.',              options: WEDGE_WEAKNESSES },
-    { key: 'swing_type', title: 'How would you describe your swing?',        sub: 'Determines how much bounce you need.',       options: WEDGE_SWINGS },
-    { key: 'conditions', title: 'What conditions do you mainly play in?',    sub: 'Affects which grinds and bounce suit you.',  options: WEDGE_CONDITIONS },
-    { key: 'skill',      title: "What's your handicap range?",               sub: 'Balances spin vs forgiveness in results.',   options: WEDGE_SKILLS },
-    { key: 'budget_max', title: "What's your budget per wedge?",             sub: 'Most golfers carry 3–4 wedges.',             options: WEDGE_BUDGETS },
-  ]
-  const current = steps[step]
-  return (
-    <div>
-      <ProgressBar steps={steps.length} current={step} />
-      <h2 className="text-lg font-medium text-gray-900 mb-1">{current.title}</h2>
-      <p className="text-sm text-gray-500 mb-5">{current.sub}</p>
-      {current.options.map(opt => (
-        <OptionCard key={opt.id} selected={profile[current.key] === opt.id}
-          onClick={() => update(current.key, opt.id)} label={opt.label} sub={opt.sub} />
-      ))}
-      <NavButtons
-        onBack={step > 0 ? () => setStep(s => s - 1) : null}
-        onNext={() => step < steps.length - 1 ? setStep(s => s + 1) : onComplete(profile)}
-        canContinue={!!profile[current.key]}
-        isLast={step === steps.length - 1}
-      />
-    </div>
-  )
+// ─────────────────────────────────────────────
+// Form step definitions for simple forms
+// ─────────────────────────────────────────────
+
+const DRIVER_STEPS = [
+  { key: 'distance',   title: 'How far do you hit your driver?',  sub: 'Helps match clubs to your swing speed.',           options: DRIVER_DISTANCES },
+  { key: 'miss',       title: "What's your typical miss?",        sub: 'The most important question for drivers.',          options: DRIVER_MISSES },
+  { key: 'priority',   title: 'What matters most to you?',        sub: 'Balances forgiveness vs distance in results.',      options: DRIVER_PRIORITIES },
+  { key: 'budget_max', title: "What's your budget?",              sub: 'We include discounted previous-gen options.',       options: DRIVER_BUDGETS },
+]
+
+const WEDGE_STEPS = [
+  { key: 'weakness',   title: "What's your biggest short game weakness?", sub: 'Shapes every recommendation.',             options: WEDGE_WEAKNESSES },
+  { key: 'swing_type', title: 'How would you describe your swing?',       sub: 'Determines how much bounce you need.',      options: WEDGE_SWINGS },
+  { key: 'conditions', title: 'What conditions do you mainly play in?',   sub: 'Affects which grinds and bounce suit you.', options: WEDGE_CONDITIONS },
+  { key: 'skill',      title: "What's your handicap range?",              sub: 'Balances spin vs forgiveness.',             options: WEDGE_SKILLS },
+  { key: 'budget_max', title: "What's your budget per wedge?",            sub: 'Most golfers carry 3–4 wedges.',            options: WEDGE_BUDGETS },
+]
+
+const PUTTER_STEPS = [
+  { key: 'stroke_type', title: "What's your putting stroke?",          sub: 'The most important fitting variable for putters.', options: PUTTER_STROKES },
+  { key: 'head_style',  title: 'Do you have a head style preference?', sub: 'Blade, mallet, or somewhere in between.',         options: PUTTER_HEAD_STYLES },
+  { key: 'alignment',   title: 'How much alignment help do you want?', sub: 'Minimal sightline to maximum alignment aids.',     options: PUTTER_ALIGNMENTS },
+  { key: 'zero_torque', title: 'Conventional or zero torque?',         sub: 'Zero torque putters stay square automatically.',   options: PUTTER_ZERO_TORQUE },
+  { key: 'budget_max',  title: "What's your budget?",                  sub: 'From great value to tour premium.',               options: PUTTER_BUDGETS },
+]
+
+const SETS_STEPS = [
+  { key: 'skill',      title: "Where are you as a golfer?",       sub: 'Shapes the entire recommendation.',           options: SETS_SKILLS },
+  { key: 'shaft',      title: 'Shaft preference?',                sub: 'Graphite is lighter and suits most players.', options: SETS_SHAFTS },
+  { key: 'priority',   title: "What's most important to you?",    sub: 'Helps prioritise between options.',           options: SETS_PRIORITIES },
+  { key: 'budget_max', title: "What's your budget for the set?",  sub: 'Complete set including bag.',                 options: SETS_BUDGETS },
+]
+
+// ─────────────────────────────────────────────
+// Hero text per club type
+// ─────────────────────────────────────────────
+
+const HERO_CONTENT = {
+  irons:   { title: 'Find irons fitted to your game.',         sub: 'Handicap, miss pattern, and budget. No generic top-10 lists.' },
+  drivers: { title: 'Find a driver fitted to your game.',      sub: 'Four quick questions. All major brands. No sponsored results.' },
+  wedges:  { title: 'Find wedges for your short game.',        sub: 'Swing type, conditions, and weaknesses. Honest recommendations.' },
+  putters: { title: 'Find a putter fitted to your stroke.',    sub: 'Stroke type, head style, and alignment preference matched perfectly.' },
+  sets:    { title: 'Find a complete set for your level.',     sub: 'Skill level, budget, and shaft preference. Everything in one go.' },
 }
 
 // ─────────────────────────────────────────────
@@ -663,7 +753,7 @@ function WedgesForm({ onComplete }) {
 // ─────────────────────────────────────────────
 
 export default function GolfPage() {
-  const [phase, setPhase] = useState('pick')    // pick | form | results | browse
+  const [phase, setPhase] = useState('pick')
   const [clubType, setClubType] = useState(null)
   const [results, setResults] = useState([])
   const [profile, setProfile] = useState(null)
@@ -680,6 +770,8 @@ export default function GolfPage() {
     if (clubType === 'irons')   matches = matchClubs(ironsData, userProfile)
     if (clubType === 'drivers') matches = matchDrivers(driversData, userProfile)
     if (clubType === 'wedges')  matches = matchWedges(wedgesData, userProfile)
+    if (clubType === 'putters') matches = matchPutters(puttersData, userProfile)
+    if (clubType === 'sets')    matches = matchSets(setsData, userProfile)
     setResults(matches)
     setProfile(userProfile)
     setShowAll(false)
@@ -709,22 +801,21 @@ export default function GolfPage() {
   }
 
   const visibleResults = showAll ? results : results.slice(0, 3)
+  const hero = HERO_CONTENT[clubType] || { title: 'Find your gear.', sub: '' }
+  const formSteps = {
+    drivers: DRIVER_STEPS, wedges: WEDGE_STEPS,
+    putters: PUTTER_STEPS, sets: SETS_STEPS,
+  }[clubType]
 
-  // ── Phase: club picker ──
+  // ── Club picker ──
   if (phase === 'pick') return (
     <div className="max-w-2xl mx-auto px-4 py-10">
       <div className="text-center mb-10">
-        <div className="flex items-center justify-center gap-2 text-xs mb-4 text-gray-400">
-          <span style={{ color: BRAND_GREEN }}>Golf</span>
-        </div>
-        <h1 className="text-2xl font-medium text-gray-900 mb-2">
-          What are you looking for?
-        </h1>
+        <h1 className="text-2xl font-medium text-gray-900 mb-2">What are you looking for?</h1>
         <p className="text-sm text-gray-500 max-w-sm mx-auto">
           Pick a club type and we'll ask a few quick questions to find your perfect match.
         </p>
       </div>
-
       <div className="grid grid-cols-1 gap-3">
         {CLUB_TYPES.map(ct => (
           <button
@@ -739,9 +830,7 @@ export default function GolfPage() {
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium text-gray-900">{ct.label}</span>
                 {!ct.live && (
-                  <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-400">
-                    Coming soon
-                  </span>
+                  <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-400">Coming soon</span>
                 )}
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{ct.desc}</p>
@@ -753,21 +842,24 @@ export default function GolfPage() {
     </div>
   )
 
-  // ── Phase: form ──
+  // ── Form ──
   if (phase === 'form') return (
     <div className="max-w-lg mx-auto px-4 py-6">
-      <div className="flex items-center gap-2 text-xs mb-6 text-gray-400">
+      <div className="flex items-center gap-2 text-xs mb-4 text-gray-400">
         <button onClick={handleReset} className="hover:text-gray-600">Golf</button>
         <span>›</span>
         <span style={{ color: BRAND_GREEN }} className="capitalize">{clubType}</span>
       </div>
-      {clubType === 'irons'   && <IronsForm   onComplete={handleFormComplete} />}
-      {clubType === 'drivers' && <DriversForm onComplete={handleFormComplete} />}
-      {clubType === 'wedges'  && <WedgesForm  onComplete={handleFormComplete} />}
+      <div className="text-center mb-8">
+        <h1 className="text-xl font-medium text-gray-900 mb-1" style={{ color: BRAND_GREEN }}>{hero.title}</h1>
+        <p className="text-sm text-gray-500">{hero.sub}</p>
+      </div>
+      {clubType === 'irons' && <IronsForm onComplete={handleFormComplete} />}
+      {formSteps && <SimpleStepForm steps={formSteps} onComplete={handleFormComplete} />}
     </div>
   )
 
-  // ── Phase: results ──
+  // ── Results ──
   if (phase === 'results') return (
     <div>
       <div className="max-w-2xl mx-auto px-4 pt-8 pb-2">
@@ -780,19 +872,14 @@ export default function GolfPage() {
         </div>
         <div className="flex items-center justify-between mb-1">
           <h2 className="text-lg font-medium text-gray-900">Your matches</h2>
-          <button onClick={handleReset}
-            className="text-xs text-gray-400 hover:text-gray-600 transition-all">
-            ← Start over
-          </button>
+          <button onClick={handleReset} className="text-xs text-gray-400 hover:text-gray-600">← Start over</button>
         </div>
         <div className="flex gap-3 mt-3">
-          <button onClick={handleBackToForm}
-            className="text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2">
+          <button onClick={handleBackToForm} className="text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2">
             Adjust answers
           </button>
           <span className="text-xs text-gray-200">·</span>
-          <button onClick={handleBrowse}
-            className="text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2">
+          <button onClick={handleBrowse} className="text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2">
             Browse all {clubType}
           </button>
         </div>
@@ -801,11 +888,9 @@ export default function GolfPage() {
       <div className="max-w-2xl mx-auto px-4 mt-4">
         {results.length === 0 ? (
           <div className="py-12 text-center">
-            <p className="text-gray-500 text-sm mb-2">No clubs matched your criteria.</p>
+            <p className="text-gray-500 text-sm mb-2">No matches found for your criteria.</p>
             <p className="text-gray-400 text-xs mb-5">Try adjusting your budget.</p>
-            <button onClick={handleReset}
-              className="px-5 py-2 rounded-lg text-white text-sm hover:opacity-90"
-              style={{ background: BRAND_GREEN }}>
+            <button onClick={handleReset} className="px-5 py-2 rounded-lg text-white text-sm hover:opacity-90" style={{ background: BRAND_GREEN }}>
               Start over
             </button>
           </div>
@@ -828,7 +913,7 @@ export default function GolfPage() {
     </div>
   )
 
-  // ── Phase: browse ──
+  // ── Browse ──
   if (phase === 'browse') return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-6">
@@ -840,9 +925,9 @@ export default function GolfPage() {
           </div>
           <h2 className="text-lg font-medium text-gray-900 capitalize">All {clubType}</h2>
         </div>
-        <button onClick={() => setPhase('results')}
+        <button onClick={() => results.length > 0 ? setPhase('results') : handleReset()}
           className="text-xs text-gray-400 hover:text-gray-600 transition-all">
-          ← Back to results
+          ← {results.length > 0 ? 'Back to results' : 'Back to finder'}
         </button>
       </div>
       <BrowseList clubType={clubType} />
