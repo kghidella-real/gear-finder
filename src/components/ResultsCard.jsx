@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import { getMatchLabel, getMatchPercent } from "../lib/matcher"
 
-function MatchBar({ score }) {
-  const percent = getMatchPercent(score)
-  const { label, color } = getMatchLabel(score)
+function MatchBar({ score, maxScore }) {
+  const percent = getMatchPercent(score, maxScore)
+  const { label, color } = getMatchLabel(score, maxScore)
 
   const colors = {
     success: { bar: 'bg-green-500', text: 'text-green-700', bg: 'bg-green-50' },
@@ -130,7 +130,7 @@ export default function ResultsCard({ club, profile, rank }) {
       </div>
 
       {/* Match bar */}
-      <MatchBar score={club.match_score} />
+      <MatchBar score={club.match_score} maxScore={club.match_max} />
 
       {/* AI explanation */}
       <div className="mb-4">
