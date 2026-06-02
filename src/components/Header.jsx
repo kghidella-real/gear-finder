@@ -18,7 +18,6 @@ export default function Header() {
   const [golfOpen, setGolfOpen] = useState(false)
   const dropdownRef = useRef(null)
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClick(e) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -29,7 +28,6 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
-  // Close dropdown on route change
   useEffect(() => {
     setGolfOpen(false)
   }, [location.pathname])
@@ -48,6 +46,19 @@ export default function Header() {
       </Link>
     )
   }
+
+  const liveBadge = (
+    <span className="text-xs px-1.5 py-0.5 rounded-full"
+      style={{ background: '#E1F5EE', color: BRAND_GREEN }}>
+      Live
+    </span>
+  )
+
+  const soonBadge = (
+    <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-400">
+      Soon
+    </span>
+  )
 
   return (
     <header className="border-b border-gray-100 bg-white sticky top-0 z-10">
@@ -80,9 +91,11 @@ export default function Header() {
             </button>
 
             {golfOpen && (
-              <div className="absolute right-0 top-8 bg-white border border-gray-200 rounded-xl shadow-lg py-1.5 min-w-40 z-20">
+              <div className="absolute right-0 top-8 bg-white border border-gray-200 rounded-xl shadow-lg py-1.5 min-w-44 z-20">
+
+                {/* Live section */}
                 <p className="text-xs font-medium text-gray-400 uppercase tracking-wider px-3 py-1.5">
-                  Clubs
+                  Available now
                 </p>
                 <Link
                   to="/golf/irons"
@@ -90,10 +103,7 @@ export default function Header() {
                   style={{ color: location.pathname === '/golf/irons' ? BRAND_GREEN : '#374151' }}
                 >
                   <span>Irons</span>
-                  <span className="text-xs px-1.5 py-0.5 rounded-full"
-                    style={{ background: '#E1F5EE', color: BRAND_GREEN }}>
-                    Live
-                  </span>
+                  {liveBadge}
                 </Link>
                 <Link
                   to="/golf/drivers"
@@ -101,25 +111,31 @@ export default function Header() {
                   style={{ color: location.pathname === '/golf/drivers' ? BRAND_GREEN : '#374151' }}
                 >
                   <span>Drivers</span>
-                  <span className="text-xs px-1.5 py-0.5 rounded-full"
-                    style={{ background: '#E1F5EE', color: BRAND_GREEN }}>
-                    Live
-                  </span>
+                  {liveBadge}
                 </Link>
+                <Link
+                  to="/golf/wedges"
+                  className="flex items-center justify-between px-3 py-2 text-sm hover:bg-gray-50 transition-colors"
+                  style={{ color: location.pathname === '/golf/wedges' ? BRAND_GREEN : '#374151' }}
+                >
+                  <span>Wedges</span>
+                  {liveBadge}
+                </Link>
+
+                {/* Coming soon section */}
                 <div className="border-t border-gray-100 mt-1 pt-1">
                   <p className="text-xs font-medium text-gray-400 uppercase tracking-wider px-3 py-1.5">
                     Coming soon
                   </p>
-                  {['Wedges', 'Putters', 'Full sets', 'Shoes'].map(item => (
+                  {['Putters', 'Full sets', 'Shoes'].map(item => (
                     <div key={item}
                       className="flex items-center justify-between px-3 py-2 text-sm text-gray-300 cursor-default">
                       <span>{item}</span>
-                      <span className="text-xs px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-400">
-                        Soon
-                      </span>
+                      {soonBadge}
                     </div>
                   ))}
                 </div>
+
               </div>
             )}
           </div>
