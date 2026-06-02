@@ -78,6 +78,11 @@ export function matchClubs(clubs, profile) {
       return { ...club, match_score: score }
     })
     .sort((a, b) => b.match_score - a.match_score)
+    .reduce((acc, club) => {
+      const brandCount = acc.filter(c => c.brand === club.brand).length
+      if (brandCount < 2) acc.push(club)
+      return acc
+    }, [])
     .slice(0, 6)
 }
 
