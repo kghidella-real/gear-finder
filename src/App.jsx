@@ -3,6 +3,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import HomePage from "./pages/HomePage"
 import IronsPage from "./pages/IronsPage"
+import DriversPage from "./pages/DriversPage"
 import AboutPage from "./pages/AboutPage"
 
 export default function App() {
