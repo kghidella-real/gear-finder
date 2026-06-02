@@ -193,15 +193,15 @@ export default function ResultsCard({ club, profile, rank }) {
 
       {/* CTA */}
       {club.affiliate_url ? (
-    <a
-    href={club.affiliate_url}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block w-full text-center py-2.5 rounded-lg bg-gray-900 text-white text-sm font-medium hover:bg-gray-700 transition-all"
-  >
-    View deal →
-  </a>
-) : (
+        <a
+          href={club.affiliate_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block w-full text-center py-2.5 rounded-lg bg-gray-900 text-white text-sm font-medium hover:bg-gray-700 transition-all"
+        >
+          View deal →
+        </a>
+      ) : (
         <button
           disabled
           className="w-full py-2.5 rounded-lg bg-gray-100 text-gray-400 text-sm cursor-not-allowed"
