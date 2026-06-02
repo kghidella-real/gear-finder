@@ -9,63 +9,87 @@ export function matchClubs(clubs, profile) {
     .map(club => {
       let score = 0
 
-      // Handicap fit — most important factor (40 points)
+      // Handicap fit (35 points — slightly reduced to let other factors influence more)
       if (
         profile.handicap >= club.handicap_min &&
         profile.handicap <= club.handicap_max
       ) {
-        score += 40
+        score += 35
       } else {
         const distance = Math.min(
           Math.abs(profile.handicap - club.handicap_min),
           Math.abs(profile.handicap - club.handicap_max)
         )
-        score += Math.max(0, 40 - distance * 6)
+        score += Math.max(0, 35 - distance * 8)
       }
 
-      // Miss correction (25 points)
-      if (profile.miss && club.miss_suits.includes(profile.miss)) {
-        score += 25
-      }
-
-      // Shaft preference (15 points)
-      if (profile.shaft && club.shaft_options.includes(profile.shaft)) {
+      // Miss correction (30 points — increased so miss drives more variation)
+      if (profile.miss && profile.miss !== 'none') {
+        if (club.miss_suits.includes(profile.miss)) {
+          score += 30
+        } else if (club.miss_suits.length === 0) {
+          score += 10
+        }
+      } else {
         score += 15
       }
 
-      // Budget fit (20 points)
-      if (profile.budget_max && club.price_usd <= profile.budget_max) {
-        score += 20
-      } else if (profile.budget_max) {
-        const overage = club.price_usd - profile.budget_max
-        score += Math.max(0, 20 - Math.floor(overage / 100) * 4)
-      }
-
-      // Bonus: draw bias helps slicers (10 points)
-      if (profile.miss === 'slice' && club.draw_bias) {
+      // Shaft preference (15 points)
+      if (profile.shaft && profile.shaft !== 'not_sure') {
+        if (club.shaft_options.includes(profile.shaft)) {
+          score += 15
+        }
+      } else {
         score += 10
       }
 
-      // Note: community_rating is intentionally excluded from matching logic.
-      // It is used for display only on the results card.
-      // Reason: ratings cluster tightly (4.2-4.9) and newer clubs have fewer
-      // reviews — using it as a tiebreaker would unfairly penalise recent releases.
+      // Budget fit (25 points — increased so price drives more variation)
+      if (profile.budget_max && profile.budget_max < 9999) {
+        if (club.price_usd <= profile.budget_max) {
+          score += 25
+        } else {
+          const overage = club.price_usd - profile.budget_max
+          score += Math.max(0, 25 - Math.floor(overage / 50) * 3)
+        }
+      } else {
+        score += 15
+      }
+
+      // Bonus: draw bias strongly helps slicers
+      if (profile.miss === 'slice' && club.draw_bias) {
+        score += 12
+      }
+
+      // Bonus: wide sole helps thin/fat hitters
+      if (profile.miss === 'thin_fat' && club.sole_width === 'wide') {
+        score += 8
+      }
+
+      // Penalty: muscle backs for high handicappers
+      if (profile.handicap > 15 && club.category === 'muscle_back') {
+        score -= 20
+      }
+
+      // Penalty: max forgiveness for low handicappers
+      if (profile.handicap < 8 && club.category === 'max_forgiveness') {
+        score -= 20
+      }
 
       return { ...club, match_score: score }
     })
     .sort((a, b) => b.match_score - a.match_score)
-    .slice(0, 3)
+    .slice(0, 6)
 }
 
 export function getMatchLabel(score) {
-  if (score >= 85) return { label: 'Excellent match', color: 'success' }
-  if (score >= 65) return { label: 'Good match', color: 'info' }
-  if (score >= 45) return { label: 'Decent match', color: 'warning' }
+  if (score >= 90) return { label: 'Excellent match', color: 'success' }
+  if (score >= 70) return { label: 'Good match', color: 'info' }
+  if (score >= 50) return { label: 'Decent match', color: 'warning' }
   return { label: 'Partial match', color: 'secondary' }
 }
 
 export function getMatchPercent(score) {
-  return Math.min(100, Math.round((score / 110) * 100))
+  return Math.min(100, Math.round((score / 115) * 100))
 }
 
 export function getCommunityLabel(rating) {
