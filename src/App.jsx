@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import HomePage from "./pages/HomePage"
+import GolfPage from "./pages/GolfPage"
 import WedgesPage from "./pages/WedgesPage"
 import IronsPage from "./pages/IronsPage"
 import DriversPage from "./pages/DriversPage"
@@ -15,9 +16,7 @@ export default function App() {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/golf/wedges" element={<WedgesPage />} />
-            <Route path="/golf/irons" element={<IronsPage />} />
-            <Route path="/golf/drivers" element={<DriversPage />} />
+            <Route path="/golf" element={<GolfPage />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </main>
