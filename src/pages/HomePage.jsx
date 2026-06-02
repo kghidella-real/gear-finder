@@ -63,7 +63,7 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="flex items-center justify-center gap-6 flex-wrap">
-          {['No sponsored results', 'Real community data', 'Free to use', '0 sponsored rankings'].map(t => (
+          {['Real community data', 'Free to use', '0 sponsored rankings'].map(t => (
             <span key={t} className="flex items-center gap-1.5 text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: AMBER }} />
               {t}
