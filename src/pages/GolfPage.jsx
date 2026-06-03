@@ -96,12 +96,26 @@ const DRIVER_BUDGETS = [
 // ─────────────────────────────────────────────
 
 const FAIRWAY_CLUB_TYPES = [
-  { id: 'fairway_wood', label: 'Fairway wood',     sub: '3-wood, 5-wood, 7-wood — tee and fairway' },
-  { id: 'hybrid',       label: 'Hybrid',           sub: 'Long iron replacement — versatile from anywhere' },
-  { id: 'either',       label: 'Help me decide',   sub: "I'm not sure which I need — show me both" },
+  { id: 'fairway_wood', label: 'Fairway wood',   sub: '3-wood, 5-wood, 7-wood — tee and fairway' },
+  { id: 'hybrid',       label: 'Hybrid',         sub: 'Long iron replacement — versatile from anywhere' },
+  { id: 'either',       label: 'Help me decide', sub: "I'm not sure which I need — show me both" },
 ]
 
-const FAIRWAY_SLOTS = [
+const FAIRWAY_SLOTS_WOOD = [
+  { id: '3wood',    label: '3-wood (15°)',    sub: 'Primary fairway metal off the tee' },
+  { id: '5wood',    label: '5-wood (18–19°)', sub: 'Versatile from tee and fairway' },
+  { id: '7wood',    label: '7-wood (21°)',    sub: 'High launch, soft landing approach' },
+  { id: 'not_sure', label: 'Not sure',        sub: 'I just need something for the long game' },
+]
+
+const FAIRWAY_SLOTS_HYBRID = [
+  { id: '3hybrid',  label: '3-hybrid (19–22°)', sub: 'Long iron replacement, lower loft' },
+  { id: '4hybrid',  label: '4-hybrid (22–25°)', sub: 'Most popular hybrid loft' },
+  { id: '5hybrid',  label: '5-hybrid (25–28°)', sub: 'Mid-iron replacement, high launch' },
+  { id: 'not_sure', label: 'Not sure',           sub: 'I just need something for the long game' },
+]
+
+const FAIRWAY_SLOTS_ALL = [
   { id: '3wood',    label: '3-wood (15°)',      sub: 'Primary fairway metal off the tee' },
   { id: '5wood',    label: '5-wood (18–19°)',   sub: 'Versatile from tee and fairway' },
   { id: '7wood',    label: '7-wood (21°)',       sub: 'High launch, soft landing approach' },
@@ -138,15 +152,6 @@ const FAIRWAY_BUDGETS = [
   { id: 350,  label: '$250–$350' },
   { id: 9999, label: '$350+' },
   { id: 9999, label: 'No limit' },
-]
-
-const FAIRWAY_STEPS = [
-  { key: 'club_type',  title: 'Fairway wood or hybrid?',         sub: 'Both replace long irons — the right choice depends on your game.',  options: FAIRWAY_CLUB_TYPES },
-  { key: 'slot',       title: 'What slot are you filling?',      sub: 'Helps match the right loft to the gap in your bag.',                options: FAIRWAY_SLOTS },
-  { key: 'distance',   title: 'How far do you hit your driver?', sub: 'Helps match clubs to your swing speed.',                           options: FAIRWAY_DISTANCES },
-  { key: 'miss',       title: "What's your typical miss?",       sub: 'Shapes which designs suit your ball flight.',                      options: FAIRWAY_MISSES },
-  { key: 'priority',   title: 'What matters most to you?',       sub: 'Helps balance your results.',                                      options: FAIRWAY_PRIORITIES },
-  { key: 'budget_max', title: "What's your budget per club?",    sub: 'Previous gen options often available at a significant discount.',   options: FAIRWAY_BUDGETS },
 ]
 
 // ─────────────────────────────────────────────
@@ -756,6 +761,64 @@ function IronsForm({ onComplete }) {
   return null
 }
 
+function FairwaysForm({ onComplete }) {
+  const [step, setStep] = useState(0)
+  const [profile, setProfile] = useState({
+    club_type: null, slot: null, distance: null,
+    miss: null, priority: null, budget_max: null
+  })
+  function update(key, val) { setProfile(p => ({ ...p, [key]: val })) }
+
+  // Dynamic slot options based on club_type selection
+  const slotOptions = profile.club_type === 'fairway_wood'
+    ? FAIRWAY_SLOTS_WOOD
+    : profile.club_type === 'hybrid'
+    ? FAIRWAY_SLOTS_HYBRID
+    : FAIRWAY_SLOTS_ALL
+
+  // Reset slot when club_type changes
+  function updateClubType(val) {
+    setProfile(p => ({ ...p, club_type: val, slot: null }))
+  }
+
+  const steps = [
+    { key: 'club_type',  title: 'Fairway wood or hybrid?',         sub: 'Both replace long irons — the right choice depends on your game.',  options: FAIRWAY_CLUB_TYPES },
+    { key: 'slot',       title: 'What slot are you filling?',      sub: 'Helps match the right loft to the gap in your bag.',                options: slotOptions },
+    { key: 'distance',   title: 'How far do you hit your driver?', sub: 'Helps match clubs to your swing speed.',                           options: FAIRWAY_DISTANCES },
+    { key: 'miss',       title: "What's your typical miss?",       sub: 'Shapes which designs suit your ball flight.',                      options: FAIRWAY_MISSES },
+    { key: 'priority',   title: 'What matters most to you?',       sub: 'Helps balance your results.',                                      options: FAIRWAY_PRIORITIES },
+    { key: 'budget_max', title: "What's your budget per club?",    sub: 'Previous gen options often available at a significant discount.',   options: FAIRWAY_BUDGETS },
+  ]
+
+  const current = steps[step]
+
+  return (
+    <div>
+      <ProgressBar steps={steps.length} current={step} />
+      <h2 className="text-lg font-medium text-gray-900 mb-1">{current.title}</h2>
+      <p className="text-sm text-gray-500 mb-5">{current.sub}</p>
+      {current.options.map((opt, i) => (
+        <OptionCard
+          key={i}
+          selected={profile[current.key] === opt.id}
+          onClick={() => current.key === 'club_type'
+            ? updateClubType(opt.id)
+            : update(current.key, opt.id)
+          }
+          label={opt.label}
+          sub={opt.sub}
+        />
+      ))}
+      <NavButtons
+        onBack={step > 0 ? () => setStep(s => s - 1) : null}
+        onNext={() => step < steps.length - 1 ? setStep(s => s + 1) : onComplete(profile)}
+        canContinue={profile[current.key] !== null && profile[current.key] !== undefined}
+        isLast={step === steps.length - 1}
+      />
+    </div>
+  )
+}
+
 function SimpleStepForm({ steps, onComplete }) {
   const [step, setStep] = useState(0)
   const [profile, setProfile] = useState(() =>
@@ -891,7 +954,6 @@ export default function GolfPage() {
   const hero = HERO_CONTENT[clubType] || { title: 'Find your gear.', sub: '' }
   const formSteps = {
     drivers:  DRIVER_STEPS,
-    fairways: FAIRWAY_STEPS,
     wedges:   WEDGE_STEPS,
     putters:  PUTTER_STEPS,
     sets:     SETS_STEPS,
@@ -944,8 +1006,9 @@ export default function GolfPage() {
         <h1 className="text-xl font-medium text-gray-900 mb-1" style={{ color: BRAND_GREEN }}>{hero.title}</h1>
         <p className="text-sm text-gray-500">{hero.sub}</p>
       </div>
-      {clubType === 'irons' && <IronsForm onComplete={handleFormComplete} />}
-      {formSteps && <SimpleStepForm steps={formSteps} onComplete={handleFormComplete} />}
+      {clubType === 'irons'    && <IronsForm    onComplete={handleFormComplete} />}
+      {clubType === 'fairways' && <FairwaysForm onComplete={handleFormComplete} />}
+      {formSteps && clubType !== 'fairways' && <SimpleStepForm steps={formSteps} onComplete={handleFormComplete} />}
     </div>
   )
 
