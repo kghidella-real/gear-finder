@@ -83,12 +83,12 @@ export default function AboutPage() {
           <div>
             <p className="text-sm text-gray-500 leading-relaxed mb-4">
               Every time it came to buying new gear, review sites felt like they were written for someone
-              else: generic top-10 lists, vague advice, and recommendations that clearly favoured whoever
+              else. Generic top-10 lists, vague advice, and recommendations that clearly favoured whoever
               was paying for the ad slot.
             </p>
             <p className="text-sm text-gray-500 leading-relaxed mb-10">
               The right gear is deeply personal. What works for an elite competitor is completely wrong
-              for a weekend warrior. So we built something better: a tool that asks about you before
+              for a weekend warrior. So we built something better, a tool that asks about you before
               it tells you what to buy.
             </p>
 
