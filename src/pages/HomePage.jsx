@@ -43,7 +43,7 @@ export default function HomePage() {
           Not a generic top 10.
         </h1>
         <p className="text-base max-w-lg mx-auto mb-8 leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
-          GearFitted matches you to the best equipment based on how you actually play —
+          GearFitted matches you to the best equipment based on how you actually play:
           your skill level, tendencies, and budget. Honest recommendations, zero brand bias.
         </p>
         <div className="flex items-center justify-center gap-3 mb-10 flex-wrap">
@@ -77,7 +77,7 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto px-4 py-12">
           <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: AMBER }}>Sports</p>
           <h2 className="text-xl font-medium text-gray-900 mb-2">What we cover</h2>
-          <p className="text-sm text-gray-500 mb-7">Starting focused, expanding deliberately. Every sport gets the same treatment — deep data, honest matching, no shortcuts.</p>
+          <p className="text-sm text-gray-500 mb-7">Starting focused, expanding deliberately. Every sport gets the same treatment: deep data, honest matching, no shortcuts.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-white rounded-xl p-5 border-2" style={{ borderColor: AMBER }}>
               <div className="text-2xl mb-3">⛳</div>
@@ -193,7 +193,7 @@ export default function HomePage() {
               <h2 className="text-xl font-medium text-gray-900 mb-3">What sport should we cover next?</h2>
               <p className="text-sm text-gray-500 leading-relaxed">
                 We're expanding beyond golf and want to hear from athletes directly.
-                Drop your email and tell us what you'd like to see — we'll let you know when your sport goes live.
+                Drop your email and tell us what you'd like to see and we'll let you know when your sport goes live.
               </p>
             </div>
             {submitted ? (
