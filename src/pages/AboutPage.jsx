@@ -155,7 +155,7 @@ export default function AboutPage() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <form className="flex flex-col gap-4" onSubmit={e => e.preventDefault()}>
+              <form className="flex flex-col gap-4" action="https://formspree.io/f/xojzadqj–" method="POST">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs font-medium text-gray-500">Your name</label>
                   <input type="text" placeholder="Your name"
