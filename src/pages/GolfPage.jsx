@@ -24,8 +24,8 @@ const BRAND_GREEN_LIGHT = '#E1F5EE'
 // ─────────────────────────────────────────────
 
 const CLUB_TYPES = [
-  { id: 'irons',    label: 'Irons',                    emoji: '🏌️', live: true, desc: 'Find irons matched to your handicap and swing' },
   { id: 'drivers',  label: 'Drivers',                  emoji: '🎯', live: true, desc: 'Match a driver to your swing speed and miss' },
+  { id: 'irons',    label: 'Irons',                    emoji: '🏌️', live: true, desc: 'Find irons matched to your handicap and swing' },
   { id: 'fairways', label: 'Fairway woods & hybrids',  emoji: '🌲', live: true, desc: 'Find fairway woods and hybrids for any slot in your bag' },
   { id: 'wedges',   label: 'Wedges',                   emoji: '🥏', live: true, desc: 'Find wedges for your short game and conditions' },
   { id: 'putters',  label: 'Putters',                  emoji: '🎱', live: true, desc: 'Match a putter to your stroke type and style' },
