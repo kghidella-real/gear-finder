@@ -35,7 +35,7 @@ export default function HomePage() {
     { label: 'Wedges', live: true },
     { label: 'Putters', live: true },
     { label: 'Full sets', live: true },
-    { label: 'Fairway woods', live: false },
+    { label: 'Fairway woods', live: true },
   ]
 
   return (
