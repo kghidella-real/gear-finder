@@ -6,6 +6,7 @@ import { matchDrivers, getDriverMatchLabel, getDriverMatchPercent } from "../lib
 import { matchWedges, getWedgeMatchLabel, getWedgeMatchPercent } from "../lib/wedgeMatcher"
 import { matchPutters, getPutterMatchLabel, getPutterMatchPercent } from "../lib/putterMatcher"
 import { matchSets, getSetsMatchLabel, getSetsMatchPercent } from "../lib/setsMatcher"
+import { matchFairways, getFairwayMatchLabel, getFairwayMatchPercent } from "../lib/fairwayMatcher"
 
 // Data
 import ironsData from "../data/irons.json"
@@ -13,6 +14,7 @@ import driversData from "../data/drivers.json"
 import wedgesData from "../data/wedges.json"
 import puttersData from "../data/putters.json"
 import setsData from "../data/sets.json"
+import fairwaysData from "../data/fairways.json"
 
 const BRAND_GREEN = '#2D6A4F'
 const BRAND_GREEN_LIGHT = '#E1F5EE'
@@ -22,11 +24,12 @@ const BRAND_GREEN_LIGHT = '#E1F5EE'
 // ─────────────────────────────────────────────
 
 const CLUB_TYPES = [
-  { id: 'irons',   label: 'Irons',        emoji: '🏌️', live: true,  desc: 'Find irons matched to your handicap and swing' },
-  { id: 'drivers', label: 'Drivers',      emoji: '🎯', live: true,  desc: 'Match a driver to your swing speed and miss' },
-  { id: 'wedges',  label: 'Wedges',       emoji: '🥏', live: true,  desc: 'Find wedges for your short game and conditions' },
-  { id: 'putters', label: 'Putters',      emoji: '🎱', live: true,  desc: 'Match a putter to your stroke type and style' },
-  { id: 'sets',    label: 'Full sets',    emoji: '🏅', live: true,  desc: 'Find a complete set matched to your level and budget' },
+  { id: 'irons',    label: 'Irons',                    emoji: '🏌️', live: true, desc: 'Find irons matched to your handicap and swing' },
+  { id: 'drivers',  label: 'Drivers',                  emoji: '🎯', live: true, desc: 'Match a driver to your swing speed and miss' },
+  { id: 'fairways', label: 'Fairway woods & hybrids',  emoji: '🌲', live: true, desc: 'Find fairway woods and hybrids for any slot in your bag' },
+  { id: 'wedges',   label: 'Wedges',                   emoji: '🥏', live: true, desc: 'Find wedges for your short game and conditions' },
+  { id: 'putters',  label: 'Putters',                  emoji: '🎱', live: true, desc: 'Match a putter to your stroke type and style' },
+  { id: 'sets',     label: 'Full sets',                emoji: '🏅', live: true, desc: 'Find a complete set matched to your level and budget' },
 ]
 
 // ─────────────────────────────────────────────
@@ -89,6 +92,64 @@ const DRIVER_BUDGETS = [
 ]
 
 // ─────────────────────────────────────────────
+// Intake options — Fairways & Hybrids
+// ─────────────────────────────────────────────
+
+const FAIRWAY_CLUB_TYPES = [
+  { id: 'fairway_wood', label: 'Fairway wood',     sub: '3-wood, 5-wood, 7-wood — tee and fairway' },
+  { id: 'hybrid',       label: 'Hybrid',           sub: 'Long iron replacement — versatile from anywhere' },
+  { id: 'either',       label: 'Help me decide',   sub: "I'm not sure which I need — show me both" },
+]
+
+const FAIRWAY_SLOTS = [
+  { id: '3wood',    label: '3-wood (15°)',      sub: 'Primary fairway metal off the tee' },
+  { id: '5wood',    label: '5-wood (18–19°)',   sub: 'Versatile from tee and fairway' },
+  { id: '7wood',    label: '7-wood (21°)',       sub: 'High launch, soft landing approach' },
+  { id: '3hybrid',  label: '3-hybrid (19–22°)', sub: 'Long iron replacement, lower loft' },
+  { id: '4hybrid',  label: '4-hybrid (22–25°)', sub: 'Most popular hybrid loft' },
+  { id: '5hybrid',  label: '5-hybrid (25–28°)', sub: 'Mid-iron replacement, high launch' },
+  { id: 'not_sure', label: 'Not sure',          sub: 'I just need something for the long game' },
+]
+
+const FAIRWAY_DISTANCES = [
+  { id: 'under_180', label: 'Under 180 yards', sub: 'Slower swing speed' },
+  { id: '180_220',   label: '180–220 yards',   sub: 'Moderate swing speed' },
+  { id: '220_260',   label: '220–260 yards',   sub: 'Average swing speed' },
+  { id: '260_plus',  label: '260+ yards',      sub: 'Fast swing speed' },
+  { id: 'not_sure',  label: 'Not sure',        sub: "I don't track distance" },
+]
+
+const FAIRWAY_MISSES = [
+  { id: 'slice',    label: 'Slice / fade',    sub: 'Ball curves right (right-handed)' },
+  { id: 'hook',     label: 'Hook / draw',     sub: 'Ball curves left (right-handed)' },
+  { id: 'both',     label: 'Both ways',       sub: 'Miss in multiple directions' },
+  { id: 'straight', label: 'Pretty straight', sub: 'No consistent miss' },
+]
+
+const FAIRWAY_PRIORITIES = [
+  { id: 'forgiveness', label: 'Maximum forgiveness', sub: 'Easy to hit from any lie' },
+  { id: 'distance',    label: 'Maximum distance',    sub: 'Every yard I can get' },
+  { id: 'workability', label: 'Shot shaping',        sub: 'Control and workability' },
+  { id: 'both',        label: 'Balanced',            sub: 'A good mix of distance and forgiveness' },
+]
+
+const FAIRWAY_BUDGETS = [
+  { id: 250,  label: 'Under $250' },
+  { id: 350,  label: '$250–$350' },
+  { id: 9999, label: '$350+' },
+  { id: 9999, label: 'No limit' },
+]
+
+const FAIRWAY_STEPS = [
+  { key: 'club_type',  title: 'Fairway wood or hybrid?',         sub: 'Both replace long irons — the right choice depends on your game.',  options: FAIRWAY_CLUB_TYPES },
+  { key: 'slot',       title: 'What slot are you filling?',      sub: 'Helps match the right loft to the gap in your bag.',                options: FAIRWAY_SLOTS },
+  { key: 'distance',   title: 'How far do you hit your driver?', sub: 'Helps match clubs to your swing speed.',                           options: FAIRWAY_DISTANCES },
+  { key: 'miss',       title: "What's your typical miss?",       sub: 'Shapes which designs suit your ball flight.',                      options: FAIRWAY_MISSES },
+  { key: 'priority',   title: 'What matters most to you?',       sub: 'Helps balance your results.',                                      options: FAIRWAY_PRIORITIES },
+  { key: 'budget_max', title: "What's your budget per club?",    sub: 'Previous gen options often available at a significant discount.',   options: FAIRWAY_BUDGETS },
+]
+
+// ─────────────────────────────────────────────
 // Intake options — Wedges
 // ─────────────────────────────────────────────
 
@@ -135,9 +196,9 @@ const PUTTER_STROKES = [
 ]
 
 const PUTTER_HEAD_STYLES = [
-  { id: 'blade',         label: 'Blade',        sub: 'Traditional thin look, feedback-focused' },
-  { id: 'mid_mallet',    label: 'Mid mallet',   sub: 'Between blade and full mallet' },
-  { id: 'mallet',        label: 'Mallet',       sub: 'Larger head, more alignment help' },
+  { id: 'blade',         label: 'Blade',         sub: 'Traditional thin look, feedback-focused' },
+  { id: 'mid_mallet',    label: 'Mid mallet',    sub: 'Between blade and full mallet' },
+  { id: 'mallet',        label: 'Mallet',        sub: 'Larger head, more alignment help' },
   { id: 'no_preference', label: 'No preference', sub: 'Show me the best option for my stroke' },
 ]
 
@@ -149,9 +210,9 @@ const PUTTER_ALIGNMENTS = [
 ]
 
 const PUTTER_ZERO_TORQUE = [
-  { id: true,  label: 'Yes — zero torque',         sub: 'Centre-shafted, stays square automatically' },
-  { id: false, label: 'No — conventional',         sub: 'Traditional hosel, natural face rotation' },
-  { id: null,  label: "Not sure / no preference",  sub: "I don't know what zero torque is" },
+  { id: true,  label: 'Yes — zero torque',        sub: 'Centre-shafted, stays square automatically' },
+  { id: false, label: 'No — conventional',        sub: 'Traditional hosel, natural face rotation' },
+  { id: null,  label: 'Not sure / no preference', sub: "I don't know what zero torque is" },
 ]
 
 const PUTTER_BUDGETS = [
@@ -170,9 +231,9 @@ const SETS_SKILLS = [
 ]
 
 const SETS_SHAFTS = [
-  { id: 'graphite',  label: 'Graphite',  sub: 'Lighter, recommended for most golfers' },
-  { id: 'steel',     label: 'Steel',     sub: 'Heavier, more consistent — stronger swingers' },
-  { id: 'not_sure',  label: 'Not sure',  sub: 'Show me the best option for my level' },
+  { id: 'graphite', label: 'Graphite', sub: 'Lighter, recommended for most golfers' },
+  { id: 'steel',    label: 'Steel',    sub: 'Heavier, more consistent — stronger swingers' },
+  { id: 'not_sure', label: 'Not sure', sub: 'Show me the best option for my level' },
 ]
 
 const SETS_PRIORITIES = [
@@ -303,39 +364,44 @@ function StatBar({ label, value }) {
 // ─────────────────────────────────────────────
 
 function ResultCard({ club, rank, clubType }) {
-  const getLabelFn = clubType === 'drivers' ? getDriverMatchLabel
-    : clubType === 'wedges'  ? getWedgeMatchLabel
-    : clubType === 'putters' ? getPutterMatchLabel
-    : clubType === 'sets'    ? getSetsMatchLabel
+  const getLabelFn = clubType === 'drivers'  ? getDriverMatchLabel
+    : clubType === 'wedges'   ? getWedgeMatchLabel
+    : clubType === 'putters'  ? getPutterMatchLabel
+    : clubType === 'sets'     ? getSetsMatchLabel
+    : clubType === 'fairways' ? getFairwayMatchLabel
     : getMatchLabel
 
-  const getPercentFn = clubType === 'drivers' ? getDriverMatchPercent
-    : clubType === 'wedges'  ? getWedgeMatchPercent
-    : clubType === 'putters' ? getPutterMatchPercent
-    : clubType === 'sets'    ? getSetsMatchPercent
+  const getPercentFn = clubType === 'drivers'  ? getDriverMatchPercent
+    : clubType === 'wedges'   ? getWedgeMatchPercent
+    : clubType === 'putters'  ? getPutterMatchPercent
+    : clubType === 'sets'     ? getSetsMatchPercent
+    : clubType === 'fairways' ? getFairwayMatchPercent
     : getMatchPercent
 
   const isTopPick = rank === 0
   const rankLabel = rank === 0 ? 'Top pick' : rank === 1 ? 'Runner up' : rank === 2 ? 'Also consider' : null
 
   const subtitle = {
-    irons:   `${club.category_label} · ${club.shaft_options?.join(' or ')} shaft`,
-    drivers: `${club.category_label} · ${club.head_size_cc}cc · ${club.lofts_available?.join('°, ')}°`,
-    wedges:  `${club.category_label} · ${club.lofts_available?.join('°, ')}°`,
-    putters: `${club.category_label} · ${club.head_style?.replace(/_/g, ' ')}`,
-    sets:    `${club.category_label} · ${club.pieces} clubs · ${club.shaft} shafts`,
+    irons:    `${club.category_label} · ${club.shaft_options?.join(' or ')} shaft`,
+    drivers:  `${club.category_label} · ${club.head_size_cc}cc · ${club.lofts_available?.join('°, ')}°`,
+    wedges:   `${club.category_label} · ${club.lofts_available?.join('°, ')}°`,
+    putters:  `${club.category_label} · ${club.head_style?.replace(/_/g, ' ')}`,
+    sets:     `${club.category_label} · ${club.pieces} clubs · ${club.shaft} shafts`,
+    fairways: `${club.category_label} · ${club.club_type?.replace(/_/g, ' ')} · ${club.lofts_available?.join('°, ')}°`,
   }[clubType] || club.category_label
 
   const priceLabel = {
-    irons: 'set price', drivers: 'per club', wedges: 'per wedge', putters: 'per putter', sets: 'complete set'
+    irons: 'set price', drivers: 'per club', wedges: 'per wedge',
+    putters: 'per putter', sets: 'complete set', fairways: 'per club',
   }[clubType] || 'price'
 
   const stats = {
-    irons:   [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Workability', club.workability], ['Feel', club.feel_rating]],
-    drivers: [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Workability', club.workability], ['Feel', club.feel_rating]],
-    wedges:  [['Spin', club.spin_rating], ['Forgiveness', club.forgiveness], ['Feel', club.feel_rating], ['Versatility', club.versatility]],
-    putters: [['Forgiveness', club.forgiveness], ['Feel', club.feel_rating], ['Alignment', club.alignment_rating], ['Distance ctrl', club.distance_control]],
-    sets:    [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Value', club.value_rating]],
+    irons:    [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Workability', club.workability], ['Feel', club.feel_rating]],
+    drivers:  [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Workability', club.workability], ['Feel', club.feel_rating]],
+    wedges:   [['Spin', club.spin_rating], ['Forgiveness', club.forgiveness], ['Feel', club.feel_rating], ['Versatility', club.versatility]],
+    putters:  [['Forgiveness', club.forgiveness], ['Feel', club.feel_rating], ['Alignment', club.alignment_rating], ['Distance ctrl', club.distance_control]],
+    sets:     [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Value', club.value_rating]],
+    fairways: [['Forgiveness', club.forgiveness], ['Distance', club.distance_rating], ['Workability', club.workability], ['Feel', club.feel_rating]],
   }[clubType] || []
 
   return (
@@ -374,7 +440,20 @@ function ResultCard({ club, rank, clubType }) {
         </div>
       )}
 
-      {/* Type-specific extras */}
+      {/* Fairways — draw bias badge */}
+      {clubType === 'fairways' && club.draw_bias && (
+        <div className="mb-4">
+          <span className="text-xs px-2 py-0.5 rounded-full"
+            style={{ background: BRAND_GREEN_LIGHT, color: BRAND_GREEN }}>
+            Draw bias
+          </span>
+          {club.adjustable && (
+            <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 ml-1.5">Adjustable</span>
+          )}
+        </div>
+      )}
+
+      {/* Wedges */}
       {clubType === 'wedges' && (
         <div className="mb-4">
           {club.grinds_available && (
@@ -396,6 +475,7 @@ function ResultCard({ club, rank, clubType }) {
         </div>
       )}
 
+      {/* Drivers */}
       {clubType === 'drivers' && club.draw_bias && (
         <div className="mb-4 flex gap-2 flex-wrap">
           <span className="text-xs px-2 py-0.5 rounded-full"
@@ -408,6 +488,7 @@ function ResultCard({ club, rank, clubType }) {
         </div>
       )}
 
+      {/* Putters */}
       {clubType === 'putters' && (
         <div className="mb-4 flex gap-2 flex-wrap">
           {club.stroke_type?.map(s => (
@@ -423,6 +504,7 @@ function ResultCard({ club, rank, clubType }) {
         </div>
       )}
 
+      {/* Sets */}
       {clubType === 'sets' && (
         <div className="mb-4">
           <span className="text-xs text-gray-400 mr-2">Includes:</span>
@@ -483,23 +565,26 @@ function ResultCard({ club, rank, clubType }) {
 // ─────────────────────────────────────────────
 
 const CATEGORIES_BY_TYPE = {
-  irons:   [{ key: 'max_forgiveness', label: 'Max forgiveness' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'players_distance', label: 'Players distance' }, { key: 'players', label: 'Players' }, { key: 'muscle_back', label: 'Muscle back' }],
-  drivers: [{ key: 'max_forgiveness', label: 'Max forgiveness' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'players_distance', label: 'Players distance' }, { key: 'players', label: 'Players' }],
-  wedges:  [{ key: 'tour_performance', label: 'Tour performance' }, { key: 'versatile', label: 'Versatile' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'specialist', label: 'Specialist' }],
-  putters: [{ key: 'blade', label: 'Blade' }, { key: 'mid_mallet', label: 'Mid mallet' }, { key: 'mallet', label: 'Mallet' }, { key: 'zero_torque', label: 'Zero torque' }],
-  sets:    [{ key: 'beginner', label: 'Beginner' }, { key: 'high_handicap', label: 'High handicap' }, { key: 'mid_handicap', label: 'Mid handicap' }],
+  irons:    [{ key: 'max_forgiveness', label: 'Max forgiveness' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'players_distance', label: 'Players distance' }, { key: 'players', label: 'Players' }, { key: 'muscle_back', label: 'Muscle back' }],
+  drivers:  [{ key: 'max_forgiveness', label: 'Max forgiveness' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'players_distance', label: 'Players distance' }, { key: 'players', label: 'Players' }],
+  wedges:   [{ key: 'tour_performance', label: 'Tour performance' }, { key: 'versatile', label: 'Versatile' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'specialist', label: 'Specialist' }],
+  putters:  [{ key: 'blade', label: 'Blade' }, { key: 'mid_mallet', label: 'Mid mallet' }, { key: 'mallet', label: 'Mallet' }, { key: 'zero_torque', label: 'Zero torque' }],
+  sets:     [{ key: 'beginner', label: 'Beginner' }, { key: 'high_handicap', label: 'High handicap' }, { key: 'mid_handicap', label: 'Mid handicap' }],
+  fairways: [{ key: 'max_forgiveness', label: 'Max forgiveness' }, { key: 'game_improvement', label: 'Game improvement' }, { key: 'players', label: 'Players' }],
 }
 
 const DATA_BY_TYPE = {
-  irons: ironsData, drivers: driversData, wedges: wedgesData, putters: puttersData, sets: setsData,
+  irons: ironsData, drivers: driversData, wedges: wedgesData,
+  putters: puttersData, sets: setsData, fairways: fairwaysData,
 }
 
 function browseSubtitle(item, clubType) {
-  if (clubType === 'irons')   return `${item.brand} · ${item.shaft_options?.join(' or ')} shaft`
-  if (clubType === 'drivers') return `${item.brand} · ${item.head_size_cc}cc${item.draw_bias ? ' · Draw bias' : ''}`
-  if (clubType === 'wedges')  return `${item.brand} · ${item.lofts_available?.length} lofts`
-  if (clubType === 'putters') return `${item.brand} · ${item.head_style?.replace(/_/g, ' ')}`
-  if (clubType === 'sets')    return `${item.brand} · ${item.pieces} clubs · ${item.shaft} shafts`
+  if (clubType === 'irons')    return `${item.brand} · ${item.shaft_options?.join(' or ')} shaft`
+  if (clubType === 'drivers')  return `${item.brand} · ${item.head_size_cc}cc${item.draw_bias ? ' · Draw bias' : ''}`
+  if (clubType === 'wedges')   return `${item.brand} · ${item.lofts_available?.length} lofts`
+  if (clubType === 'putters')  return `${item.brand} · ${item.head_style?.replace(/_/g, ' ')}`
+  if (clubType === 'sets')     return `${item.brand} · ${item.pieces} clubs · ${item.shaft} shafts`
+  if (clubType === 'fairways') return `${item.brand} · ${item.club_type?.replace(/_/g, ' ')}${item.draw_bias ? ' · Draw bias' : ''}`
   return item.brand
 }
 
@@ -703,14 +788,14 @@ function SimpleStepForm({ steps, onComplete }) {
 }
 
 // ─────────────────────────────────────────────
-// Form step definitions for simple forms
+// Form step definitions
 // ─────────────────────────────────────────────
 
 const DRIVER_STEPS = [
-  { key: 'distance',   title: 'How far do you hit your driver?',  sub: 'Helps match clubs to your swing speed.',           options: DRIVER_DISTANCES },
-  { key: 'miss',       title: "What's your typical miss?",        sub: 'The most important question for drivers.',          options: DRIVER_MISSES },
-  { key: 'priority',   title: 'What matters most to you?',        sub: 'Balances forgiveness vs distance in results.',      options: DRIVER_PRIORITIES },
-  { key: 'budget_max', title: "What's your budget?",              sub: 'We include discounted previous-gen options.',       options: DRIVER_BUDGETS },
+  { key: 'distance',   title: 'How far do you hit your driver?',  sub: 'Helps match clubs to your swing speed.',      options: DRIVER_DISTANCES },
+  { key: 'miss',       title: "What's your typical miss?",        sub: 'The most important question for drivers.',     options: DRIVER_MISSES },
+  { key: 'priority',   title: 'What matters most to you?',        sub: 'Balances forgiveness vs distance in results.', options: DRIVER_PRIORITIES },
+  { key: 'budget_max', title: "What's your budget?",              sub: 'We include discounted previous-gen options.',  options: DRIVER_BUDGETS },
 ]
 
 const WEDGE_STEPS = [
@@ -730,10 +815,10 @@ const PUTTER_STEPS = [
 ]
 
 const SETS_STEPS = [
-  { key: 'skill',      title: "Where are you as a golfer?",       sub: 'Shapes the entire recommendation.',           options: SETS_SKILLS },
-  { key: 'shaft',      title: 'Shaft preference?',                sub: 'Graphite is lighter and suits most players.', options: SETS_SHAFTS },
-  { key: 'priority',   title: "What's most important to you?",    sub: 'Helps prioritise between options.',           options: SETS_PRIORITIES },
-  { key: 'budget_max', title: "What's your budget for the set?",  sub: 'Complete set including bag.',                 options: SETS_BUDGETS },
+  { key: 'skill',      title: "Where are you as a golfer?",      sub: 'Shapes the entire recommendation.',           options: SETS_SKILLS },
+  { key: 'shaft',      title: 'Shaft preference?',               sub: 'Graphite is lighter and suits most players.', options: SETS_SHAFTS },
+  { key: 'priority',   title: "What's most important to you?",   sub: 'Helps prioritise between options.',           options: SETS_PRIORITIES },
+  { key: 'budget_max', title: "What's your budget for the set?", sub: 'Complete set including bag.',                 options: SETS_BUDGETS },
 ]
 
 // ─────────────────────────────────────────────
@@ -741,11 +826,12 @@ const SETS_STEPS = [
 // ─────────────────────────────────────────────
 
 const HERO_CONTENT = {
-  irons:   { title: 'Find irons fitted to your game.',         sub: 'Handicap, miss pattern, and budget. No generic top-10 lists.' },
-  drivers: { title: 'Find a driver fitted to your game.',      sub: 'Four quick questions. All major brands. No sponsored results.' },
-  wedges:  { title: 'Find wedges for your short game.',        sub: 'Swing type, conditions, and weaknesses. Honest recommendations.' },
-  putters: { title: 'Find a putter fitted to your stroke.',    sub: 'Stroke type, head style, and alignment preference matched perfectly.' },
-  sets:    { title: 'Find a complete set for your level.',     sub: 'Skill level, budget, and shaft preference. Everything in one go.' },
+  irons:    { title: 'Find irons fitted to your game.',               sub: 'Handicap, miss pattern, and budget. No generic top-10 lists.' },
+  drivers:  { title: 'Find a driver fitted to your game.',            sub: 'Four quick questions. All major brands. No sponsored results.' },
+  fairways: { title: 'Find fairway woods and hybrids for your game.', sub: 'Swing speed, slot, miss pattern, and budget. All major brands.' },
+  wedges:   { title: 'Find wedges for your short game.',              sub: 'Swing type, conditions, and weaknesses. Honest recommendations.' },
+  putters:  { title: 'Find a putter fitted to your stroke.',          sub: 'Stroke type, head style, and alignment preference matched perfectly.' },
+  sets:     { title: 'Find a complete set for your level.',           sub: 'Skill level, budget, and shaft preference. Everything in one go.' },
 }
 
 // ─────────────────────────────────────────────
@@ -767,11 +853,12 @@ export default function GolfPage() {
 
   function handleFormComplete(userProfile) {
     let matches = []
-    if (clubType === 'irons')   matches = matchClubs(ironsData, userProfile)
-    if (clubType === 'drivers') matches = matchDrivers(driversData, userProfile)
-    if (clubType === 'wedges')  matches = matchWedges(wedgesData, userProfile)
-    if (clubType === 'putters') matches = matchPutters(puttersData, userProfile)
-    if (clubType === 'sets')    matches = matchSets(setsData, userProfile)
+    if (clubType === 'irons')    matches = matchClubs(ironsData, userProfile)
+    if (clubType === 'drivers')  matches = matchDrivers(driversData, userProfile)
+    if (clubType === 'fairways') matches = matchFairways(fairwaysData, userProfile)
+    if (clubType === 'wedges')   matches = matchWedges(wedgesData, userProfile)
+    if (clubType === 'putters')  matches = matchPutters(puttersData, userProfile)
+    if (clubType === 'sets')     matches = matchSets(setsData, userProfile)
     setResults(matches)
     setProfile(userProfile)
     setShowAll(false)
@@ -803,8 +890,11 @@ export default function GolfPage() {
   const visibleResults = showAll ? results : results.slice(0, 3)
   const hero = HERO_CONTENT[clubType] || { title: 'Find your gear.', sub: '' }
   const formSteps = {
-    drivers: DRIVER_STEPS, wedges: WEDGE_STEPS,
-    putters: PUTTER_STEPS, sets: SETS_STEPS,
+    drivers:  DRIVER_STEPS,
+    fairways: FAIRWAY_STEPS,
+    wedges:   WEDGE_STEPS,
+    putters:  PUTTER_STEPS,
+    sets:     SETS_STEPS,
   }[clubType]
 
   // ── Club picker ──
