@@ -119,8 +119,7 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-col gap-2">
                 {[
-                  { label: 'Golf — Irons, Drivers, Wedges, Putters, Full sets', status: 'live' },
-                  { label: 'Golf — Fairway woods and hybrids', status: 'soon' },
+                  { label: 'Golf — Drivers, Fairway woods / Hybrids, Irons, Wedges, Putters, Full sets', status: 'live' },
                   { label: 'More sports — details TBC', status: 'soon' },
                 ].map(item => (
                   <div
