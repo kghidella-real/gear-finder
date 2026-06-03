@@ -16,8 +16,8 @@ import puttersData from "../data/putters.json"
 import setsData from "../data/sets.json"
 import fairwaysData from "../data/fairways.json"
 
-const BRAND_GREEN = '#2D6A4F'
-const BRAND_GREEN_LIGHT = '#E1F5EE'
+const BRAND_GREEN = '#C8965A'
+const BRAND_GREEN_LIGHT = '#FAF4EC'
 
 // ─────────────────────────────────────────────
 // Club type definitions
@@ -593,6 +593,155 @@ function browseSubtitle(item, clubType) {
   return item.brand
 }
 
+function BrowseCard({ item, clubType }) {
+  const [expanded, setExpanded] = useState(false)
+  const subtitle = browseSubtitle(item, clubType)
+  const stats = {
+    irons:    [['Forgiveness', item.forgiveness], ['Distance', item.distance_rating], ['Workability', item.workability], ['Feel', item.feel_rating]],
+    drivers:  [['Forgiveness', item.forgiveness], ['Distance', item.distance_rating], ['Workability', item.workability], ['Feel', item.feel_rating]],
+    wedges:   [['Spin', item.spin_rating], ['Forgiveness', item.forgiveness], ['Feel', item.feel_rating], ['Versatility', item.versatility]],
+    putters:  [['Forgiveness', item.forgiveness], ['Feel', item.feel_rating], ['Alignment', item.alignment_rating], ['Distance ctrl', item.distance_control]],
+    sets:     [['Forgiveness', item.forgiveness], ['Distance', item.distance_rating], ['Value', item.value_rating]],
+    fairways: [['Forgiveness', item.forgiveness], ['Distance', item.distance_rating], ['Workability', item.workability], ['Feel', item.feel_rating]],
+  }[clubType] || []
+
+  return (
+    <div
+      className="bg-white rounded-xl overflow-hidden transition-all"
+      style={{ border: expanded ? `1.5px solid ${BRAND_GREEN}` : '1px solid #e5e7eb' }}
+    >
+      <button
+        onClick={() => setExpanded(e => !e)}
+        className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors text-left"
+      >
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-medium text-gray-900">{item.name}</p>
+          <p className="text-xs text-gray-400 mt-0.5">{subtitle}</p>
+        </div>
+        <div className="flex items-center gap-3 ml-3 shrink-0">
+          <p className="text-sm font-medium text-gray-900">${item.price_usd?.toLocaleString()}</p>
+          <svg
+            width="16" height="16" viewBox="0 0 16 16" fill="none"
+            className="transition-transform duration-200"
+            style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)', color: BRAND_GREEN }}
+          >
+            <path d="M4 6 L8 10 L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+      </button>
+
+      {expanded && (
+        <div className="px-4 pb-4 border-t border-gray-100">
+          <p className="text-sm text-gray-600 leading-relaxed mt-4 mb-4">{item.community_verdict}</p>
+
+          {stats.length > 0 && (
+            <div className="flex flex-col gap-1.5 mb-4 py-3 border-t border-b border-gray-100">
+              {stats.map(([label, value]) => (
+                <StatBar key={label} label={label} value={value} />
+              ))}
+            </div>
+          )}
+
+          {clubType === 'wedges' && (
+            <div className="mb-4">
+              {item.grinds_available && (
+                <div className="mb-1.5">
+                  <span className="text-xs text-gray-400 mr-2">Grinds:</span>
+                  {item.grinds_available.map(g => (
+                    <span key={g} className="inline-block text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-500 mr-1 mb-1">{g}</span>
+                  ))}
+                </div>
+              )}
+              {item.bounce_options && (
+                <div>
+                  <span className="text-xs text-gray-400 mr-2">Bounce:</span>
+                  {item.bounce_options.map(b => (
+                    <span key={b} className="inline-block text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-500 mr-1">{b}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {(clubType === 'drivers' || clubType === 'fairways') && item.draw_bias && (
+            <div className="mb-4 flex gap-2 flex-wrap">
+              <span className="text-xs px-2 py-0.5 rounded-full"
+                style={{ background: BRAND_GREEN_LIGHT, color: BRAND_GREEN }}>Draw bias</span>
+              {item.adjustable && (
+                <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">Adjustable</span>
+              )}
+            </div>
+          )}
+
+          {clubType === 'putters' && (
+            <div className="mb-4 flex gap-2 flex-wrap">
+              {item.stroke_type?.map(s => (
+                <span key={s} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
+                  {s.replace(/_/g, ' ')} stroke
+                </span>
+              ))}
+              {item.hosel_options?.slice(0, 2).map(h => (
+                <span key={h} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-400">
+                  {h.replace(/_/g, ' ')}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {clubType === 'sets' && (
+            <div className="mb-4">
+              <span className="text-xs text-gray-400 mr-2">Includes:</span>
+              {item.includes?.map(inc => (
+                <span key={inc} className="inline-block text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-500 mr-1 mb-1">
+                  {inc.replace(/_/g, ' ')}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {item.tags?.slice(0, 3).map(tag => (
+              <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-400">
+                {tag.replace(/-/g, ' ')}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-1.5">
+              <span className="text-sm font-medium text-gray-900">{item.community_rating}</span>
+              <div className="flex gap-0.5">
+                {[1,2,3,4,5].map(star => (
+                  <svg key={star}
+                    className={`w-3.5 h-3.5 ${star <= Math.round(item.community_rating) ? 'text-amber-400' : 'text-gray-200'}`}
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <span className="text-xs text-gray-400">/ 5</span>
+            </div>
+            <span className="text-xs text-gray-400">{item.community_count?.toLocaleString()} reviews</span>
+          </div>
+
+          {item.affiliate_url ? (
+            <a href={item.affiliate_url} target="_blank" rel="noopener noreferrer"
+              className="block w-full text-center py-2.5 rounded-lg text-white text-sm font-medium hover:opacity-90 transition-all"
+              style={{ background: '#1f2937' }}>
+              View deal →
+            </a>
+          ) : (
+            <button disabled
+              className="w-full py-2.5 rounded-lg bg-gray-100 text-gray-400 text-sm cursor-not-allowed">
+              Affiliate link coming soon
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
 function BrowseList({ clubType }) {
   const data = DATA_BY_TYPE[clubType] || []
   const categories = CATEGORIES_BY_TYPE[clubType] || []
@@ -608,22 +757,7 @@ function BrowseList({ clubType }) {
             </h3>
             <div className="flex flex-col gap-2">
               {items.map(item => (
-                <div key={item.id} className="bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">{item.name}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{browseSubtitle(item, clubType)}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-gray-900">${item.price_usd?.toLocaleString()}</p>
-                    <div className="flex gap-1 mt-1 justify-end">
-                      {item.tags?.slice(0, 2).map(tag => (
-                        <span key={tag} className="text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-400">
-                          {tag.replace(/-/g, ' ')}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                <BrowseCard key={item.id} item={item} clubType={clubType} />
               ))}
             </div>
           </div>
