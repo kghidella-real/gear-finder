@@ -558,7 +558,7 @@ function ResultCard({ club, rank, clubType }) {
       ) : (
         <button disabled
           className="w-full py-2.5 rounded-lg bg-gray-100 text-gray-400 text-sm cursor-not-allowed">
-          Affiliate link coming soon
+          Coming soon
         </button>
       )}
     </div>
@@ -733,7 +733,7 @@ function BrowseCard({ item, clubType }) {
           ) : (
             <button disabled
               className="w-full py-2.5 rounded-lg bg-gray-100 text-gray-400 text-sm cursor-not-allowed">
-              Affiliate link coming soon
+              Coming soon
             </button>
           )}
         </div>
