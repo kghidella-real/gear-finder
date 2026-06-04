@@ -217,7 +217,7 @@ const PUTTER_ALIGNMENTS = [
 const PUTTER_ZERO_TORQUE = [
   { id: true,  label: 'Yes — zero torque',        sub: 'Centre-shafted, stays square automatically' },
   { id: false, label: 'No — conventional',        sub: 'Traditional hosel, natural face rotation' },
-  { id: null,  label: 'Not sure / no preference', sub: "I don't know what zero torque is" },
+  { id: 'not_sure',  label: 'Not sure / no preference', sub: "I don't know what zero torque is" },
 ]
 
 const PUTTER_BUDGETS = [
@@ -956,7 +956,7 @@ function FairwaysForm({ onComplete }) {
 function SimpleStepForm({ steps, onComplete }) {
   const [step, setStep] = useState(0)
   const [profile, setProfile] = useState(() =>
-    Object.fromEntries(steps.map(s => [s.key, null]))
+    Object.fromEntries(steps.map(s => [s.key, undefined]))
   )
   function update(key, val) { setProfile(p => ({ ...p, [key]: val })) }
   const current = steps[step]
