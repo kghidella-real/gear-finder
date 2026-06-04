@@ -9,21 +9,61 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 54,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60, 62],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["F", "S", "M", "D", "K", "T"],
-    "finishes": ["tour_chrome", "jet_black", "nickel", "raw"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "F",
+      "S",
+      "M",
+      "D",
+      "K",
+      "T"
+    ],
+    "finishes": [
+      "tour_chrome",
+      "jet_black",
+      "nickel",
+      "raw"
+    ],
     "spin_rating": 10,
     "forgiveness": 6,
     "feel_rating": 10,
     "versatility": 10,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.9,
     "community_count": 185,
-    "community_verdict": "The new benchmark. SM11 expands on the SM10 with 27 configurations and refined grinds across all lofts. Immediate tour adoption — most played wedge on tour by a massive margin. If you're serious about your short game this is the starting point.",
-    "affiliate_url": "",
-    "tags": ["most-played-tour", "27-configurations", "spin-milled", "2025-model", "bob-vokey"]
+    "community_verdict": "The new benchmark. SM11 expands on the SM10 with 27 configurations and refined grinds across all lofts. Immediate tour adoption \u2014 most played wedge on tour by a massive margin. If you're serious about your short game this is the starting point.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/vokey-sm11-tour-chrome-wedge-w%2F-steel-shaft/2000000058242.html",
+    "tags": [
+      "most-played-tour",
+      "27-configurations",
+      "spin-milled",
+      "2025-model",
+      "bob-vokey"
+    ]
   },
   {
     "id": "titleist-vokey-sm10",
@@ -35,22 +75,63 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 54,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60, 62],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["F", "S", "M", "D", "K", "T"],
-    "finishes": ["tour_chrome", "jet_black", "nickel", "raw"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "F",
+      "S",
+      "M",
+      "D",
+      "K",
+      "T"
+    ],
+    "finishes": [
+      "tour_chrome",
+      "jet_black",
+      "nickel",
+      "raw"
+    ],
     "spin_rating": 10,
     "forgiveness": 6,
     "feel_rating": 10,
     "versatility": 10,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.9,
     "community_count": 850,
-    "community_verdict": "The previous benchmark, now discounted. Won 30 PGA Tour events in 2024 including 3 majors. 25 loft/bounce/grind combinations cover every possible setup. Now $159 — exceptional value for the best wedge ever made up to this point.",
-    "affiliate_url": "",
-    "tags": ["previous-gen", "value", "30-tour-wins-2024", "3-majors-2024", "spin-milled", "25-configurations"]
-  }, 
+    "community_verdict": "The previous benchmark, now discounted. Won 30 PGA Tour events in 2024 including 3 majors. 25 loft/bounce/grind combinations cover every possible setup. Now $159 \u2014 exceptional value for the best wedge ever made up to this point.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/vokey-sm10-tour-chrome-wedge/2000000041794.html",
+    "tags": [
+      "previous-gen",
+      "value",
+      "30-tour-wins-2024",
+      "3-majors-2024",
+      "spin-milled",
+      "25-configurations"
+    ]
+  },
   {
     "id": "cleveland-rtz-tour-rack",
     "name": "Cleveland RTZ Tour Rack",
@@ -61,21 +142,54 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 20,
-    "lofts_available": [48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["Low", "Mid", "Full", "Adapt"],
-    "finishes": ["raw"],
+    "lofts_available": [
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "Low",
+      "Mid",
+      "Full",
+      "Adapt"
+    ],
+    "finishes": [
+      "raw"
+    ],
     "spin_rating": 10,
     "forgiveness": 6,
     "feel_rating": 10,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 95,
     "community_verdict": "Raw finish version of the RTZ for tour-level spin longevity. Z-Alloy steel is engineered to resist rust while retaining groove performance far longer than traditional raw wedges. New Adapt grind designed specifically for open-faced shotmaking is a standout addition. One of the best looking wedges of 2025.",
-    "affiliate_url": "",
-    "tags": ["raw-finish", "z-alloy", "rust-resistant", "adapt-grind", "2025-model"]
+    "affiliate_url": "https://www.pgatoursuperstore.com/rtz-full-face-adapt-tour-rack-wedge-w%2F-steel-shaft/2000000049108.html",
+    "tags": [
+      "raw-finish",
+      "z-alloy",
+      "rust-resistant",
+      "adapt-grind",
+      "2025-model"
+    ]
   },
   {
     "id": "cleveland-rtz",
@@ -87,21 +201,56 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 25,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["Low", "Mid", "Full", "Adapt"],
-    "finishes": ["tour_satin", "black_satin"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "Low",
+      "Mid",
+      "Full",
+      "Adapt"
+    ],
+    "finishes": [
+      "tour_satin",
+      "black_satin"
+    ],
     "spin_rating": 10,
     "forgiveness": 6,
     "feel_rating": 10,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 185,
-    "community_verdict": "The new benchmark from Cleveland. Z-Alloy steel is softer and less dense than standard 8620 steel — gives noticeably better feel than the RTX6 while maintaining class-leading spin. New Adapt grind for open-faced shots is a genuine innovation. Closest rival to the Vokey SM11 and significantly cheaper.",
-    "affiliate_url": "",
-    "tags": ["z-alloy", "10-percent-softer", "adapt-grind", "2025-model", "vokey-rival"]
+    "community_verdict": "The new benchmark from Cleveland. Z-Alloy steel is softer and less dense than standard 8620 steel \u2014 gives noticeably better feel than the RTX6 while maintaining class-leading spin. New Adapt grind for open-faced shots is a genuine innovation. Closest rival to the Vokey SM11 and significantly cheaper.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/rtz-black-satin-wedge-w%2F-steel-shaft/2000000049104.html",
+    "tags": [
+      "z-alloy",
+      "10-percent-softer",
+      "adapt-grind",
+      "2025-model",
+      "vokey-rival"
+    ]
   },
   {
     "id": "cleveland-cbz",
@@ -113,21 +262,53 @@
     "category_label": "Game improvement",
     "handicap_min": 10,
     "handicap_max": 54,
-    "lofts_available": [44, 46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["mid", "high"],
-    "grinds_available": ["V-Sole", "S-Sole", "C-Shaped"],
-    "finishes": ["tour_satin", "black_satin"],
+    "lofts_available": [
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "V-Sole",
+      "S-Sole",
+      "C-Shaped"
+    ],
+    "finishes": [
+      "tour_satin",
+      "black_satin"
+    ],
     "spin_rating": 8,
     "forgiveness": 9,
     "feel_rating": 8,
     "versatility": 7,
-    "conditions_suits": ["normal", "soft"],
-    "swing_type_suits": ["steep", "neutral"],
+    "conditions_suits": [
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral"
+    ],
     "community_rating": 4.6,
     "community_count": 55,
     "community_verdict": "Brand new for 2025. Replaces the CBX4 as Cleveland's game improvement wedge with new Z-Alloy steel delivering 25% softer feel than before. Cavity back design blends seamlessly with game improvement irons. Best forgiveness and feel combination in the GI wedge category.",
-    "affiliate_url": "",
-    "tags": ["z-alloy", "cavity-back", "game-improvement", "2025-model", "cbx4-replacement"]
+    "affiliate_url": "https://www.pgatoursuperstore.com/cbz-tour-satin-wedge-w%2F-steel-shaft/2000000055278.html",
+    "tags": [
+      "z-alloy",
+      "cavity-back",
+      "game-improvement",
+      "2025-model",
+      "cbx4-replacement"
+    ]
   },
   {
     "id": "cleveland-rtx6-zipcore",
@@ -139,21 +320,58 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 25,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["Low", "Mid", "Full", "Low+"],
-    "finishes": ["tour_satin", "black_satin", "raw"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "Low",
+      "Mid",
+      "Full",
+      "Low+"
+    ],
+    "finishes": [
+      "tour_satin",
+      "black_satin",
+      "raw"
+    ],
     "spin_rating": 9,
     "forgiveness": 6,
     "feel_rating": 9,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 620,
-    "community_verdict": "Two-time Golf Digest Hot List Gold winner. Now superseded by the RTZ but still an elite wedge at a discounted price. 300 RPM above average backspin in testing. Four sole grinds in plain language — Low, Mid, Full, Low+ — are far easier to understand than Vokey's letter system. Outstanding value at $139.",
-    "affiliate_url": "",
-    "tags": ["hot-list-gold-2x", "previous-gen", "value", "hydrazip", "ultizip", "zipcore"]
+    "community_verdict": "Two-time Golf Digest Hot List Gold winner. Now superseded by the RTZ but still an elite wedge at a discounted price. 300 RPM above average backspin in testing. Four sole grinds in plain language \u2014 Low, Mid, Full, Low+ \u2014 are far easier to understand than Vokey's letter system. Outstanding value at $139.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/rtx-6-zipcore-tour-satin-wedge/2000000033892.html",
+    "tags": [
+      "hot-list-gold-2x",
+      "previous-gen",
+      "value",
+      "hydrazip",
+      "ultizip",
+      "zipcore"
+    ]
   },
   {
     "id": "cleveland-cbx4-zipcore",
@@ -165,21 +383,53 @@
     "category_label": "Game improvement",
     "handicap_min": 10,
     "handicap_max": 54,
-    "lofts_available": [44, 46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["mid", "high"],
-    "grinds_available": ["V-Sole", "S-Sole", "C-Shaped"],
-    "finishes": ["tour_satin", "black_satin"],
+    "lofts_available": [
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "V-Sole",
+      "S-Sole",
+      "C-Shaped"
+    ],
+    "finishes": [
+      "tour_satin",
+      "black_satin"
+    ],
     "spin_rating": 8,
     "forgiveness": 9,
     "feel_rating": 7,
     "versatility": 7,
-    "conditions_suits": ["normal", "soft"],
-    "swing_type_suits": ["steep", "neutral"],
+    "conditions_suits": [
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral"
+    ],
     "community_rating": 4.7,
     "community_count": 380,
-    "community_verdict": "Previous gen game improvement wedge now at a significant discount. Top five in MyGolfSpy 2023 wedge testing. Designed to blend with cavity back irons. V-Sole on lower lofts prevents digging on fat shots — a genuine lifesaver for mid-high handicappers. Outstanding value at $119.",
-    "affiliate_url": "",
-    "tags": ["previous-gen", "value", "cavity-back", "v-sole", "top-5-mygolfspy-2023"]
+    "community_verdict": "Previous gen game improvement wedge now at a significant discount. Top five in MyGolfSpy 2023 wedge testing. Designed to blend with cavity back irons. V-Sole on lower lofts prevents digging on fat shots \u2014 a genuine lifesaver for mid-high handicappers. Outstanding value at $119.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/cbx4-zipcore-wedge-w%2F-steel-shaft/2000000041612.html",
+    "tags": [
+      "previous-gen",
+      "value",
+      "cavity-back",
+      "v-sole",
+      "top-5-mygolfspy-2023"
+    ]
   },
   {
     "id": "taylormade-mg5-tw",
@@ -191,21 +441,45 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 10,
-    "lofts_available": [56, 58, 60],
-    "bounce_options": ["low"],
-    "grinds_available": ["TW"],
-    "finishes": ["satin_chrome", "charcoal"],
+    "lofts_available": [
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low"
+    ],
+    "grinds_available": [
+      "TW"
+    ],
+    "finishes": [
+      "satin_chrome",
+      "charcoal"
+    ],
     "spin_rating": 10,
     "forgiveness": 5,
     "feel_rating": 10,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal"],
-    "swing_type_suits": ["shallow", "neutral"],
+    "conditions_suits": [
+      "firm",
+      "normal"
+    ],
+    "swing_type_suits": [
+      "shallow",
+      "neutral"
+    ],
     "community_rating": 4.9,
     "community_count": 85,
-    "community_verdict": "Tiger Woods' personal grind — low bounce with maximum heel and toe relief for open-faced shots from any lie. Rory McIlroy used these to complete the career Grand Slam. Only for the most skilled players who spend serious time around the greens. Premium price reflects the tour-exclusive pedigree.",
-    "affiliate_url": "",
-    "tags": ["tiger-woods-grind", "rory-mcilroy", "career-grand-slam", "tour-only", "forged", "2025-model"]
+    "community_verdict": "Tiger Woods' personal grind \u2014 low bounce with maximum heel and toe relief for open-faced shots from any lie. Rory McIlroy used these to complete the career Grand Slam. Only for the most skilled players who spend serious time around the greens. Premium price reflects the tour-exclusive pedigree.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/milled-grind-5-chrome-wedge---tiger-woods-grind-w%2F-steel-shaft/2000000055257.html",
+    "tags": [
+      "tiger-woods-grind",
+      "rory-mcilroy",
+      "career-grand-slam",
+      "tour-only",
+      "forged",
+      "2025-model"
+    ]
   },
   {
     "id": "taylormade-mg5",
@@ -217,21 +491,60 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 20,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["SB", "SC", "SX", "HB", "LB"],
-    "finishes": ["satin_chrome", "charcoal", "tour_raw", "aged_copper"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "SB",
+      "SC",
+      "SX",
+      "HB",
+      "LB"
+    ],
+    "finishes": [
+      "satin_chrome",
+      "charcoal",
+      "tour_raw",
+      "aged_copper"
+    ],
     "spin_rating": 10,
     "forgiveness": 6,
     "feel_rating": 10,
     "versatility": 10,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 155,
-    "community_verdict": "First fully forged MG wedge — a massive step up in feel from the MG4. Six precision-milled grinds cover every swing type and condition. Saw-milled grooves generate exceptional spin. The SB grind is the all-rounder, SC for the shot-maker. Now the benchmark forged tour wedge alongside the Vokey SM11.",
-    "affiliate_url": "",
-    "tags": ["fully-forged", "first-forged-mg", "6-grinds", "saw-milled-grooves", "spin-tread", "2025-model"]
+    "community_verdict": "First fully forged MG wedge \u2014 a massive step up in feel from the MG4. Six precision-milled grinds cover every swing type and condition. Saw-milled grooves generate exceptional spin. The SB grind is the all-rounder, SC for the shot-maker. Now the benchmark forged tour wedge alongside the Vokey SM11.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/milled-grind-5-chrome-wedge-w%2F-steel-shaft/2000000055256.html",
+    "tags": [
+      "fully-forged",
+      "first-forged-mg",
+      "6-grinds",
+      "saw-milled-grooves",
+      "spin-tread",
+      "2025-model"
+    ]
   },
   {
     "id": "taylormade-hi-toe-4",
@@ -243,21 +556,56 @@
     "category_label": "Versatile",
     "handicap_min": 0,
     "handicap_max": 36,
-    "lofts_available": [52, 54, 56, 58, 60, 62],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["SB", "SB+", "LB", "HB"],
-    "finishes": ["satin_chrome", "charcoal", "tour_raw", "aged_copper"],
+    "lofts_available": [
+      52,
+      54,
+      56,
+      58,
+      60,
+      62
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "SB",
+      "SB+",
+      "LB",
+      "HB"
+    ],
+    "finishes": [
+      "satin_chrome",
+      "charcoal",
+      "tour_raw",
+      "aged_copper"
+    ],
     "spin_rating": 9,
     "forgiveness": 8,
     "feel_rating": 8,
     "versatility": 10,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 310,
-    "community_verdict": "The most forgiving tour-quality wedge available. Full-face grooves and raised-toe design mean shots struck anywhere on the face generate maximum spin. More forgiving than the MG5 around the greens. Suits any handicap — mid handicappers love it for bunker play and high lofted shots. One tester called it a no-brainer.",
-    "affiliate_url": "",
-    "tags": ["full-face-grooves", "hi-toe", "most-forgiving-tour-wedge", "spin-tread-raw", "2024-model"]
+    "community_verdict": "The most forgiving tour-quality wedge available. Full-face grooves and raised-toe design mean shots struck anywhere on the face generate maximum spin. More forgiving than the MG5 around the greens. Suits any handicap \u2014 mid handicappers love it for bunker play and high lofted shots. One tester called it a no-brainer.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/hi-toe-4-wedge/2000000045453.html",
+    "tags": [
+      "full-face-grooves",
+      "hi-toe",
+      "most-forgiving-tour-wedge",
+      "spin-tread-raw",
+      "2024-model"
+    ]
   },
   {
     "id": "taylormade-mg4",
@@ -269,22 +617,60 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 20,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["SB", "SB+", "LB", "HB"],
-    "finishes": ["satin_chrome", "charcoal", "tour_raw", "aged_copper"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "SB",
+      "SB+",
+      "LB",
+      "HB"
+    ],
+    "finishes": [
+      "satin_chrome",
+      "charcoal",
+      "tour_raw",
+      "aged_copper"
+    ],
     "spin_rating": 9,
     "forgiveness": 6,
     "feel_rating": 9,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 520,
-    "community_verdict": "Third best spin performance in 2024 testing at 8,003 RPM — one of only three wedges to exceed 8,000 RPM. Now superseded by the forged MG5 but still an outstanding performer at a discounted price. Spin Tread grooves maintain spin in wet conditions better than almost anything else. Exceptional value at $149.",
-    "affiliate_url": "",
-    "tags": ["previous-gen", "value", "third-best-spin-2024", "spin-tread", "raw-face", "8000rpm"]
-  }, 
+    "community_verdict": "Third best spin performance in 2024 testing at 8,003 RPM \u2014 one of only three wedges to exceed 8,000 RPM. Now superseded by the forged MG5 but still an outstanding performer at a discounted price. Spin Tread grooves maintain spin in wet conditions better than almost anything else. Exceptional value at $149.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/milled-grind-4-chrome-wedge/2000000037834.html",
+    "tags": [
+      "previous-gen",
+      "value",
+      "third-best-spin-2024",
+      "spin-tread",
+      "raw-face",
+      "8000rpm"
+    ]
+  },
   {
     "id": "callaway-jaws-raw-chrome",
     "name": "Callaway JAWS Raw Chrome",
@@ -295,21 +681,59 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 20,
-    "lofts_available": [48, 50, 52, 54, 56, 58, 60, 62],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["S", "C", "Z", "W", "X", "T"],
-    "finishes": ["chrome", "black_plasma", "raw"],
+    "lofts_available": [
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "S",
+      "C",
+      "Z",
+      "W",
+      "X",
+      "T"
+    ],
+    "finishes": [
+      "chrome",
+      "black_plasma",
+      "raw"
+    ],
     "spin_rating": 10,
     "forgiveness": 6,
     "feel_rating": 9,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.7,
     "community_count": 485,
     "community_verdict": "Callaway's flagship tour wedge designed by legendary wedge maker Roger Cleveland. Most aggressive grooves in golf with a raw face for maximum spin. First Callaway wedge to use tungsten weighting in sand and lob wedges for centred CG. Six grind options cover every player type. Closest Callaway competitor to the Vokey SM11.",
-    "affiliate_url": "",
-    "tags": ["roger-cleveland", "tungsten-weighting", "raw-face", "most-aggressive-grooves", "6-grinds"]
+    "affiliate_url": "https://www.pgatoursuperstore.com/jaws-raw-chrome-wedge-w%2F-graphite-shaft/2000000030771.html",
+    "tags": [
+      "roger-cleveland",
+      "tungsten-weighting",
+      "raw-face",
+      "most-aggressive-grooves",
+      "6-grinds"
+    ]
   },
   {
     "id": "callaway-cb-wedge",
@@ -321,21 +745,51 @@
     "category_label": "Game improvement",
     "handicap_min": 10,
     "handicap_max": 54,
-    "lofts_available": [44, 46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["mid", "high"],
-    "grinds_available": ["Standard", "HT"],
-    "finishes": ["chrome"],
+    "lofts_available": [
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "Standard",
+      "HT"
+    ],
+    "finishes": [
+      "chrome"
+    ],
     "spin_rating": 8,
     "forgiveness": 9,
     "feel_rating": 7,
     "versatility": 7,
-    "conditions_suits": ["normal", "soft"],
-    "swing_type_suits": ["steep", "neutral"],
+    "conditions_suits": [
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral"
+    ],
     "community_rating": 4.6,
     "community_count": 285,
     "community_verdict": "The most forgiving wedge Callaway makes. Full-face grooves with JAWS groove technology in a cavity back head that blends with game improvement irons. Urethane microspheres soften the feel. 2024 Hot List winner. Best choice for mid-high handicappers who struggle with consistency around the greens.",
-    "affiliate_url": "",
-    "tags": ["cavity-back", "full-face-grooves", "game-improvement", "hot-list-2024", "urethane-microspheres"]
+    "affiliate_url": "https://www.pgatoursuperstore.com/golf-clubs/wedges/callaway/",
+    "tags": [
+      "cavity-back",
+      "full-face-grooves",
+      "game-improvement",
+      "hot-list-2024",
+      "urethane-microspheres"
+    ]
   },
   {
     "id": "callaway-jaws-md5",
@@ -347,21 +801,56 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 20,
-    "lofts_available": [48, 50, 52, 54, 56, 58, 60, 64],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["S", "W", "X", "C"],
-    "finishes": ["chrome", "tour_grey"],
+    "lofts_available": [
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      64
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "S",
+      "W",
+      "X",
+      "C"
+    ],
+    "finishes": [
+      "chrome",
+      "tour_grey"
+    ],
     "spin_rating": 9,
     "forgiveness": 6,
     "feel_rating": 9,
     "versatility": 8,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.7,
     "community_count": 620,
-    "community_verdict": "Previous flagship now at a significant discount. Constructed from 8620 mild carbon steel with excellent feel and premium aesthetics. No obvious weaknesses — excels at creating spin on longer pitch shots and full shots. Outstanding value at $119 for golfers who don't need the JAWS Raw's marginal improvements.",
-    "affiliate_url": "",
-    "tags": ["previous-gen", "value", "8620-carbon-steel", "premium-feel", "tour-grey-finish"]
+    "community_verdict": "Previous flagship now at a significant discount. Constructed from 8620 mild carbon steel with excellent feel and premium aesthetics. No obvious weaknesses \u2014 excels at creating spin on longer pitch shots and full shots. Outstanding value at $119 for golfers who don't need the JAWS Raw's marginal improvements.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/jaws-md5-2022-chrome-wedge/2000000030859.html",
+    "tags": [
+      "previous-gen",
+      "value",
+      "8620-carbon-steel",
+      "premium-feel",
+      "tour-grey-finish"
+    ]
   },
   {
     "id": "ping-s259",
@@ -373,21 +862,60 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 25,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60, 62],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["SS", "TS", "WS", "T", "E", "S"],
-    "finishes": ["hydropearl_chrome", "midnight"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "SS",
+      "TS",
+      "WS",
+      "T",
+      "E",
+      "S"
+    ],
+    "finishes": [
+      "hydropearl_chrome",
+      "midnight"
+    ],
     "spin_rating": 10,
     "forgiveness": 7,
     "feel_rating": 9,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 95,
-    "community_verdict": "Ping's best wedge ever. Wheel-cut grooves precision-milled to different dimensions by loft for optimal spin at every club speed. 25 loft/grind options. Refined T and E grinds for 2026. Already winning on tour. WebFit Wedge app helps find your exact grind — Ping's fitting expertise applied to wedges. Excellent stopping power and controlled flight.",
-    "affiliate_url": "",
-    "tags": ["wheel-cut-grooves", "25-combinations", "webfit-app", "tour-winning", "2026-model", "8620-carbon-steel"]
+    "community_verdict": "Ping's best wedge ever. Wheel-cut grooves precision-milled to different dimensions by loft for optimal spin at every club speed. 25 loft/grind options. Refined T and E grinds for 2026. Already winning on tour. WebFit Wedge app helps find your exact grind \u2014 Ping's fitting expertise applied to wedges. Excellent stopping power and controlled flight.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/s259-chrome-wedge-w/-steel-shaft/2000000057744.html",
+    "tags": [
+      "wheel-cut-grooves",
+      "25-combinations",
+      "webfit-app",
+      "tour-winning",
+      "2026-model",
+      "8620-carbon-steel"
+    ]
   },
   {
     "id": "ping-s159",
@@ -399,21 +927,60 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 25,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60, 62],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["SS", "TS", "WS", "T", "E", "S"],
-    "finishes": ["hydropearl_chrome", "midnight"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "SS",
+      "TS",
+      "WS",
+      "T",
+      "E",
+      "S"
+    ],
+    "finishes": [
+      "hydropearl_chrome",
+      "midnight"
+    ],
     "spin_rating": 9,
     "forgiveness": 7,
     "feel_rating": 9,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 320,
-    "community_verdict": "Previous gen now on sale at $179. Widely regarded as one of the best wedges Ping ever made. 25 loft/grind combinations with the WebFit app to help you choose. Tour-inspired 8620 carbon steel. Won multiple Best Wedge awards in 2024-2025. Exceptional value for a tour-level wedge — the S259 is a marginal improvement.",
-    "affiliate_url": "",
-    "tags": ["previous-gen", "value", "25-combinations", "webfit-app", "8620-carbon-steel", "award-winning"]
+    "community_verdict": "Previous gen now on sale at $179. Widely regarded as one of the best wedges Ping ever made. 25 loft/grind combinations with the WebFit app to help you choose. Tour-inspired 8620 carbon steel. Won multiple Best Wedge awards in 2024-2025. Exceptional value for a tour-level wedge \u2014 the S259 is a marginal improvement.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/s159-chrome-wedge-w%2F-steel-shafts/2000000041799.html",
+    "tags": [
+      "previous-gen",
+      "value",
+      "25-combinations",
+      "webfit-app",
+      "8620-carbon-steel",
+      "award-winning"
+    ]
   },
   {
     "id": "ping-bunkr",
@@ -425,21 +992,42 @@
     "category_label": "Specialist",
     "handicap_min": 12,
     "handicap_max": 54,
-    "lofts_available": [56, 58, 60],
-    "bounce_options": ["high"],
-    "grinds_available": ["BunkR"],
-    "finishes": ["hydropearl_chrome"],
+    "lofts_available": [
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "high"
+    ],
+    "grinds_available": [
+      "BunkR"
+    ],
+    "finishes": [
+      "hydropearl_chrome"
+    ],
     "spin_rating": 7,
     "forgiveness": 10,
     "feel_rating": 7,
     "versatility": 4,
-    "conditions_suits": ["soft"],
-    "swing_type_suits": ["steep", "neutral"],
+    "conditions_suits": [
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral"
+    ],
     "community_rating": 4.5,
     "community_count": 145,
-    "community_verdict": "Engineered specifically to get the ball out of sand bunkers consistently. Extra-wide sole with maximum bounce prevents the club from digging. Not designed for full shots or tight lies — purely a bunker specialist. If you regularly struggle to escape sand and your handicap is above 12 this is worth serious consideration.",
-    "affiliate_url": "",
-    "tags": ["bunker-specialist", "max-bounce", "wide-sole", "sand-only", "forgiveness"]
+    "community_verdict": "Engineered specifically to get the ball out of sand bunkers consistently. Extra-wide sole with maximum bounce prevents the club from digging. Not designed for full shots or tight lies \u2014 purely a bunker specialist. If you regularly struggle to escape sand and your handicap is above 12 this is worth serious consideration.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/bunkr-wedge-w%2F-steel-shaft/2000000049139.html",
+    "tags": [
+      "bunker-specialist",
+      "max-bounce",
+      "wide-sole",
+      "sand-only",
+      "forgiveness"
+    ]
   },
   {
     "id": "mizuno-pro-t1",
@@ -451,21 +1039,60 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 12,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["S", "M", "P", "C", "V", "X"],
-    "finishes": ["white_satin", "black", "blue", "denim_copper"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "S",
+      "M",
+      "P",
+      "C",
+      "V",
+      "X"
+    ],
+    "finishes": [
+      "white_satin",
+      "black",
+      "blue",
+      "denim_copper"
+    ],
     "spin_rating": 10,
     "forgiveness": 5,
     "feel_rating": 10,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["shallow", "neutral"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "shallow",
+      "neutral"
+    ],
     "community_rating": 4.8,
     "community_count": 145,
-    "community_verdict": "Mizuno's tour muscleback wedge — Grain Flow Forged HD from 1025E carbon steel with copper underlay for the softest wedge feel in the business. Six grinds for every condition and swing type. Best for skilled players who prioritise feel and shot-making over forgiveness. If you love how Mizuno irons feel, this is the wedge equivalent.",
-    "affiliate_url": "",
-    "tags": ["grain-flow-forged", "copper-underlay", "1025e-steel", "tour-muscleback", "6-grinds", "2025-model"]
+    "community_verdict": "Mizuno's tour muscleback wedge \u2014 Grain Flow Forged HD from 1025E carbon steel with copper underlay for the softest wedge feel in the business. Six grinds for every condition and swing type. Best for skilled players who prioritise feel and shot-making over forgiveness. If you love how Mizuno irons feel, this is the wedge equivalent.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/mizuno-pro-t-1-blue-ion-wedge-w%2F-steel-shaft/2000000050594.html",
+    "tags": [
+      "grain-flow-forged",
+      "copper-underlay",
+      "1025e-steel",
+      "tour-muscleback",
+      "6-grinds",
+      "2025-model"
+    ]
   },
   {
     "id": "mizuno-pro-t3",
@@ -477,21 +1104,60 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 20,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["S", "M", "P", "C", "V", "X"],
-    "finishes": ["white_satin", "black", "denim_copper"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "S",
+      "M",
+      "P",
+      "C",
+      "V",
+      "X"
+    ],
+    "finishes": [
+      "white_satin",
+      "black",
+      "denim_copper"
+    ],
     "spin_rating": 10,
     "forgiveness": 6,
     "feel_rating": 9,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 175,
-    "community_verdict": "The more player-friendly of the two Pro T wedges. Same Grain Flow Forged HD construction and 1025E steel as the T-1 but with slightly more stability on off-centre strikes. Four finishes including the striking black ion. If the T-1 is a blade, the T-3 is a compact cavity — same feel, marginally more forgiving.",
-    "affiliate_url": "",
-    "tags": ["grain-flow-forged", "copper-underlay", "1025e-steel", "player-friendly", "6-grinds", "2025-model"]
+    "community_verdict": "The more player-friendly of the two Pro T wedges. Same Grain Flow Forged HD construction and 1025E steel as the T-1 but with slightly more stability on off-centre strikes. Four finishes including the striking black ion. If the T-1 is a blade, the T-3 is a compact cavity \u2014 same feel, marginally more forgiving.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/mizuno-pro-t-3-white-satin-wedge-w/-steel-shaft/2000000050595.html",
+    "tags": [
+      "grain-flow-forged",
+      "copper-underlay",
+      "1025e-steel",
+      "player-friendly",
+      "6-grinds",
+      "2025-model"
+    ]
   },
   {
     "id": "mizuno-t24",
@@ -503,21 +1169,59 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 25,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["S", "D", "C", "V", "X"],
-    "finishes": ["white_satin", "denim_copper", "raw"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "S",
+      "D",
+      "C",
+      "V",
+      "X"
+    ],
+    "finishes": [
+      "white_satin",
+      "denim_copper",
+      "raw"
+    ],
     "spin_rating": 9,
     "forgiveness": 6,
     "feel_rating": 9,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.8,
     "community_count": 390,
-    "community_verdict": "Previous flagship now discounted — available raw for as low as $100. Forged 1025 Pure Select Carbon Steel with Boron for outstanding feel and groove longevity. Loft-specific grooves and Hydroflow Micro Grooves for wet weather performance. Five grinds in plain English. The raw finish at current prices is possibly the best value forged wedge available.",
-    "affiliate_url": "",
-    "tags": ["forged", "loft-specific-grooves", "hydroflow", "value", "previous-gen", "raw-available"]
+    "community_verdict": "Previous flagship now discounted \u2014 available raw for as low as $100. Forged 1025 Pure Select Carbon Steel with Boron for outstanding feel and groove longevity. Loft-specific grooves and Hydroflow Micro Grooves for wet weather performance. Five grinds in plain English. The raw finish at current prices is possibly the best value forged wedge available.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/golf/brand/mizuno/mizuno-t24-wedges/",
+    "tags": [
+      "forged",
+      "loft-specific-grooves",
+      "hydroflow",
+      "value",
+      "previous-gen",
+      "raw-available"
+    ]
   },
   {
     "id": "mizuno-s23",
@@ -529,22 +1233,52 @@
     "category_label": "Game improvement",
     "handicap_min": 10,
     "handicap_max": 54,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["mid", "high"],
-    "grinds_available": ["Standard", "Wide"],
-    "finishes": ["chrome"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "Standard",
+      "Wide"
+    ],
+    "finishes": [
+      "chrome"
+    ],
     "spin_rating": 8,
     "forgiveness": 8,
     "feel_rating": 8,
     "versatility": 7,
-    "conditions_suits": ["normal", "soft"],
-    "swing_type_suits": ["steep", "neutral"],
+    "conditions_suits": [
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral"
+    ],
     "community_rating": 4.5,
     "community_count": 195,
-    "community_verdict": "Mizuno's game improvement wedge. Larger, more forgiving head than the T24 with the same Hydroflow groove technology. Blends well with the JPX Hot Metal iron range. Mid-high handicappers who want Mizuno quality and feel in a more forgiving package. Now heavily discounted as previous gen — outstanding value.",
-    "affiliate_url": "",
-    "tags": ["game-improvement", "hydroflow", "forgiving", "previous-gen", "value", "jpx-blend"]
-  }, 
+    "community_verdict": "Mizuno's game improvement wedge. Larger, more forgiving head than the T24 with the same Hydroflow groove technology. Blends well with the JPX Hot Metal iron range. Mid-high handicappers who want Mizuno quality and feel in a more forgiving package. Now heavily discounted as previous gen \u2014 outstanding value.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/golf/brand/mizuno/mizuno-s23-wedges/",
+    "tags": [
+      "game-improvement",
+      "hydroflow",
+      "forgiving",
+      "previous-gen",
+      "value",
+      "jpx-blend"
+    ]
+  },
   {
     "id": "wilson-staff-model-zm",
     "name": "Wilson Staff Model ZM",
@@ -555,21 +1289,55 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 25,
-    "lofts_available": [46, 48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["Standard", "Tour_Grind", "HT"],
-    "finishes": ["satin_chrome"],
+    "lofts_available": [
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "Standard",
+      "Tour_Grind",
+      "HT"
+    ],
+    "finishes": [
+      "satin_chrome"
+    ],
     "spin_rating": 9,
     "forgiveness": 6,
     "feel_rating": 9,
     "versatility": 8,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.7,
     "community_count": 245,
-    "community_verdict": "Wilson's serious tour wedge entry and genuinely hard to fault. Soft forged 8620 carbon steel with straighter leading edge and progressive CG changes by loft. Reviewers note it's difficult to spot a weakness — excellent spin on full shots, good feel, clean looks. Significantly cheaper than Vokey and Cleveland equivalents. If you're not brand-led this deserves serious consideration.",
-    "affiliate_url": "",
-    "tags": ["forged", "8620-carbon-steel", "value", "progressive-cg", "zm-groove", "padraig-harrington"]
+    "community_verdict": "Wilson's serious tour wedge entry and genuinely hard to fault. Soft forged 8620 carbon steel with straighter leading edge and progressive CG changes by loft. Reviewers note it's difficult to spot a weakness \u2014 excellent spin on full shots, good feel, clean looks. Significantly cheaper than Vokey and Cleveland equivalents. If you're not brand-led this deserves serious consideration.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/staff-model-wedge/2000000010398.html",
+    "tags": [
+      "forged",
+      "8620-carbon-steel",
+      "value",
+      "progressive-cg",
+      "zm-groove",
+      "padraig-harrington"
+    ]
   },
   {
     "id": "wilson-staff-model-zm-ht",
@@ -581,21 +1349,45 @@
     "category_label": "Versatile",
     "handicap_min": 0,
     "handicap_max": 36,
-    "lofts_available": [56, 58, 60],
-    "bounce_options": ["mid"],
-    "grinds_available": ["HT"],
-    "finishes": ["satin_chrome"],
+    "lofts_available": [
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "mid"
+    ],
+    "grinds_available": [
+      "HT"
+    ],
+    "finishes": [
+      "satin_chrome"
+    ],
     "spin_rating": 9,
     "forgiveness": 8,
     "feel_rating": 8,
     "versatility": 10,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.6,
     "community_count": 145,
     "community_verdict": "High toe version of the ZM for golfers who spend time with the face open around the greens. Wide sole construction provides forgiveness from any lie. Full-face grooves ensure spin regardless of where you make contact. Available in 56, 58, and 60 degrees only. Excellent value Hi-Toe alternative to the TaylorMade Hi-Toe 4 at a significantly lower price.",
-    "affiliate_url": "",
-    "tags": ["hi-toe", "full-face-grooves", "forgiving", "open-face-specialist", "value"]
+    "affiliate_url": "https://www.pgatoursuperstore.com/golf-clubs/wedges/wilson/",
+    "tags": [
+      "hi-toe",
+      "full-face-grooves",
+      "forgiving",
+      "open-face-specialist",
+      "value"
+    ]
   },
   {
     "id": "cobra-king-wedge",
@@ -607,21 +1399,57 @@
     "category_label": "Tour performance",
     "handicap_min": 0,
     "handicap_max": 25,
-    "lofts_available": [48, 50, 52, 54, 56, 58, 60],
-    "bounce_options": ["low", "mid", "high"],
-    "grinds_available": ["Drop", "WideL ow", "Versatile", "Tour"],
-    "finishes": ["satin_chrome", "black_qpq", "raw"],
+    "lofts_available": [
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "low",
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "Drop",
+      "WideL ow",
+      "Versatile",
+      "Tour"
+    ],
+    "finishes": [
+      "satin_chrome",
+      "black_qpq",
+      "raw"
+    ],
     "spin_rating": 9,
     "forgiveness": 7,
     "feel_rating": 9,
     "versatility": 9,
-    "conditions_suits": ["firm", "normal", "soft"],
-    "swing_type_suits": ["steep", "neutral", "shallow"],
+    "conditions_suits": [
+      "firm",
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral",
+      "shallow"
+    ],
     "community_rating": 4.7,
     "community_count": 195,
-    "community_verdict": "2026 Hot List winner. MIM manufacturing delivers 50% tighter tolerances than conventional cast wedges, with robot polishing for total consistency. Flight Window Technology optimises CG per loft — stronger lofts fly higher, weaker lofts stay lower for maximum spin. Redesigned Speed Notch is 67% larger for better turf interaction. Seriously impressive 2025 wedge.",
-    "affiliate_url": "",
-    "tags": ["mim-manufacturing", "hot-list-2026", "flight-window-tech", "4-grinds", "speed-notch", "2025-model"]
+    "community_verdict": "2026 Hot List winner. MIM manufacturing delivers 50% tighter tolerances than conventional cast wedges, with robot polishing for total consistency. Flight Window Technology optimises CG per loft \u2014 stronger lofts fly higher, weaker lofts stay lower for maximum spin. Redesigned Speed Notch is 67% larger for better turf interaction. Seriously impressive 2025 wedge.",
+    "affiliate_url": "https://www.pgatoursuperstore.com/golf-clubs/wedges/cobra/",
+    "tags": [
+      "mim-manufacturing",
+      "hot-list-2026",
+      "flight-window-tech",
+      "4-grinds",
+      "speed-notch",
+      "2025-model"
+    ]
   },
   {
     "id": "cobra-king-x-wedge",
@@ -633,20 +1461,47 @@
     "category_label": "Game improvement",
     "handicap_min": 10,
     "handicap_max": 54,
-    "lofts_available": [48, 50, 52, 56, 58, 60],
-    "bounce_options": ["mid", "high"],
-    "grinds_available": ["Progressive"],
-    "finishes": ["satin_chrome", "black_qpq"],
+    "lofts_available": [
+      48,
+      50,
+      52,
+      56,
+      58,
+      60
+    ],
+    "bounce_options": [
+      "mid",
+      "high"
+    ],
+    "grinds_available": [
+      "Progressive"
+    ],
+    "finishes": [
+      "satin_chrome",
+      "black_qpq"
+    ],
     "spin_rating": 8,
     "forgiveness": 9,
     "feel_rating": 7,
     "versatility": 7,
-    "conditions_suits": ["normal", "soft"],
-    "swing_type_suits": ["steep", "neutral"],
+    "conditions_suits": [
+      "normal",
+      "soft"
+    ],
+    "swing_type_suits": [
+      "steep",
+      "neutral"
+    ],
     "community_rating": 4.5,
     "community_count": 125,
     "community_verdict": "Cobra's game improvement wedge with a cavity back design that blends with modern game improvement irons. 20g of weight redistributed to the perimeter for forgiveness on off-centre strikes. TPU insert softens feel. Progressive teardrop grind suits a wide variety of lies. Good choice for mid-high handicappers who want consistency over shot-making.",
-    "affiliate_url": "",
-    "tags": ["cavity-back", "game-improvement", "tpu-insert", "perimeter-weighting", "mim-manufacturing"]
+    "affiliate_url": "https://www.pgatoursuperstore.com/king-x-wedge-w/-steel-shaft/2000000049097.html",
+    "tags": [
+      "cavity-back",
+      "game-improvement",
+      "tpu-insert",
+      "perimeter-weighting",
+      "mim-manufacturing"
+    ]
   }
 ]
