@@ -3,17 +3,22 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import HomePage from "./pages/HomePage"
 import GolfPage from "./pages/GolfPage"
+import BestDriverForSlicePage from "./pages/BestDriverForSlicePage"
+import WedgesPage from "./pages/WedgesPage"
+import IronsPage from "./pages/IronsPage"
+import DriversPage from "./pages/DriversPage"
 import AboutPage from "./pages/AboutPage"
 
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col" style={{ background: '#F7F6F3' }}>
+      <div className="min-h-screen bg-gray-50 flex flex-col">
         <Header />
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/golf" element={<GolfPage />} />
+            <Route path="/golf/best-driver-for-slice" element={<BestDriverForSlicePage />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </main>
