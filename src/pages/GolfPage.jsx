@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams, Link } from "react-router-dom"
 
 // Matchers
 import { matchClubs, getMatchLabel, getMatchPercent } from "../lib/matcher"
@@ -1128,12 +1128,20 @@ export default function GolfPage() {
       </div>
       <div className="grid grid-cols-1 gap-3">
         {CLUB_TYPES.map(ct => (
-          <button
+          <div
             key={ct.id}
+            role="button"
+            tabIndex={ct.live ? 0 : -1}
             onClick={() => ct.live && handleClubPick(ct.id)}
-            disabled={!ct.live}
-            className="flex items-center gap-4 p-4 rounded-xl border text-left transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:border-gray-400"
-            style={{ borderColor: '#e5e7eb', background: '#fff' }}
+            onKeyDown={(e) => { if (ct.live && (e.key === 'Enter' || e.key === ' ')) handleClubPick(ct.id) }}
+            aria-disabled={!ct.live}
+            className="flex items-center gap-4 p-4 rounded-xl border text-left transition-all disabled:opacity-40 cursor-pointer hover:border-gray-400"
+            style={{
+              borderColor: '#e5e7eb',
+              background: '#fff',
+              opacity: ct.live ? 1 : 0.4,
+              cursor: ct.live ? 'pointer' : 'not-allowed',
+            }}
           >
             <span className="text-2xl">{ct.emoji}</span>
             <div className="flex-1">
@@ -1144,9 +1152,19 @@ export default function GolfPage() {
                 )}
               </div>
               <p className="text-xs text-gray-500 mt-0.5">{ct.desc}</p>
+              {ct.id === 'drivers' && (
+                <Link
+                  to="/golf/best-driver-for-slice"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-xs mt-1 inline-block hover:underline"
+                  style={{ color: BRAND_GREEN }}
+                >
+                  Got a slice? Read our guide →
+                </Link>
+              )}
             </div>
             {ct.live && <span className="text-gray-400 text-sm">→</span>}
-          </button>
+          </div>
         ))}
       </div>
     </div>
