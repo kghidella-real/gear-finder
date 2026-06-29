@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSearchParams } from "react-router-dom"
 
 // Matchers
 import { matchClubs, getMatchLabel, getMatchPercent } from "../lib/matcher"
@@ -217,7 +218,7 @@ const PUTTER_ALIGNMENTS = [
 const PUTTER_ZERO_TORQUE = [
   { id: true,  label: 'Yes — zero torque',        sub: 'Centre-shafted, stays square automatically' },
   { id: false, label: 'No — conventional',        sub: 'Traditional hosel, natural face rotation' },
-  { id: 'not_sure',  label: 'Not sure / no preference', sub: "I don't know what zero torque is" },
+  { id: 'not_sure', label: 'Not sure / no preference', sub: "I don't know what zero torque is" },
 ]
 
 const PUTTER_BUDGETS = [
@@ -953,11 +954,12 @@ function FairwaysForm({ onComplete }) {
   )
 }
 
-function SimpleStepForm({ steps, onComplete }) {
+function SimpleStepForm({ steps, onComplete, prefill }) {
   const [step, setStep] = useState(0)
-  const [profile, setProfile] = useState(() =>
-    Object.fromEntries(steps.map(s => [s.key, undefined]))
-  )
+  const [profile, setProfile] = useState(() => ({
+    ...Object.fromEntries(steps.map(s => [s.key, undefined])),
+    ...(prefill || {}),
+  }))
   function update(key, val) { setProfile(p => ({ ...p, [key]: val })) }
   const current = steps[step]
   return (
@@ -1036,14 +1038,36 @@ const HERO_CONTENT = {
 // ─────────────────────────────────────────────
 
 export default function GolfPage() {
+  const [searchParams] = useSearchParams()
   const [phase, setPhase] = useState('pick')
   const [clubType, setClubType] = useState(null)
   const [results, setResults] = useState([])
   const [profile, setProfile] = useState(null)
   const [showAll, setShowAll] = useState(false)
+  const [prefill, setPrefill] = useState(null)
+
+  // If the URL has ?type=drivers&miss=slice (etc), jump straight into
+  // that form with the given answer(s) already selected. This lets
+  // landing pages link directly into a useful starting point.
+  useEffect(() => {
+    const type = searchParams.get('type')
+    if (type) {
+      const prefillObj = {}
+      for (const [key, value] of searchParams.entries()) {
+        if (key === 'type') continue
+        // numbers come through as strings from the URL — convert budget_max etc
+        prefillObj[key] = isNaN(value) ? value : Number(value)
+      }
+      setClubType(type)
+      setPrefill(prefillObj)
+      setPhase('form')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function handleClubPick(type) {
     setClubType(type)
+    setPrefill(null)
     setPhase('form')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -1142,7 +1166,7 @@ export default function GolfPage() {
       </div>
       {clubType === 'irons'    && <IronsForm    onComplete={handleFormComplete} />}
       {clubType === 'fairways' && <FairwaysForm onComplete={handleFormComplete} />}
-      {formSteps && clubType !== 'fairways' && <SimpleStepForm steps={formSteps} onComplete={handleFormComplete} />}
+      {formSteps && clubType !== 'fairways' && <SimpleStepForm steps={formSteps} onComplete={handleFormComplete} prefill={prefill} />}
     </div>
   )
 
